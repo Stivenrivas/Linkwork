@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script>try{var t=localStorage.getItem("lw_tema")||"claro";var d=t==="oscuro"||(t==="auto"&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(d)document.documentElement.setAttribute("data-theme","dark");}catch(e){}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkWork - Inicio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css?v=20260811a">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+</head>
+<body>
+
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-center" style="margin-bottom: 0;">
+      <div class="col-12 col-md-8 col-lg-5">
+        <div class="brand-header">
+          <div class="brand-logo-large">
+            <div class="logo-icon">LW</div>
+            <span class="logo-text">LinkWork</span>
+          </div>
+          <p class="brand-tagline">Conectando talento y oportunidades</p>
+        </div>
+
+        <div class="auth-toggle">
+          <button class="auth-tab active" id="showLoginBtn">Iniciar Sesión</button>
+          <button class="auth-tab" id="showRegisterBtn">Registrarse</button>
+        </div>
+
+        <!-- LOGIN -->
+        <div class="card" id="loginCard">
+          <div class="card-body">
+            <form id="loginForm">
+              <div class="mb-3">
+                <label class="form-label" for="loginEmail"><i class="material-icons">email</i>Correo electrónico</label>
+                <input type="email" id="loginEmail" class="form-control" required autocomplete="email">
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="loginPassword"><i class="material-icons">lock</i>Contraseña</label>
+                <div class="password-wrapper">
+                  <input type="password" id="loginPassword" class="form-control" required autocomplete="current-password">
+                  <button type="button" class="password-toggle" onclick="togglePW('loginPassword', this)">
+                    <i class="material-icons">visibility_off</i>
+                  </button>
+                </div>
+                <div class="forgot-password">
+                  <button type="button" class="forgot-link" onclick="openRecoverModal()">¿Olvidaste tu contraseña?</button>
+                </div>
+              </div>
+              <button type="submit" id="loginBtn" class="btn btn-primary w-100">
+                Ingresar
+                <i class="material-icons">arrow_forward</i>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- REGISTER -->
+        <div class="card" id="registerCard" style="display:none;">
+          <div class="card-body">
+            <form id="registerForm">
+              <div class="mb-3">
+                <label class="form-label" for="regUsername"><i class="material-icons">person</i>Usuario</label>
+                <input type="text" id="regUsername" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="regEmail"><i class="material-icons">email</i>Correo electrónico</label>
+                <input type="email" id="regEmail" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="regPhone"><i class="material-icons">phone</i>Teléfono</label>
+                <input type="tel" id="regPhone" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="regPassword"><i class="material-icons">lock</i>Contraseña (mín. 6 caracteres)</label>
+                <div class="password-wrapper">
+                  <input type="password" id="regPassword" class="form-control" required minlength="6">
+                  <button type="button" class="password-toggle" onclick="togglePW('regPassword', this)">
+                    <i class="material-icons">visibility_off</i>
+                  </button>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="regRole"><i class="material-icons">badge</i>Rol</label>
+                <select id="regRole" class="form-select" required>
+                  <option value="" disabled selected>Selecciona tu rol</option>
+                  <option value="usuario">Usuario</option>
+                  <option value="empleador">Empleador</option>
+                  <option value="proveedor">Proveedor</option>
+                </select>
+              </div>
+              <button type="submit" id="registerBtn" class="btn btn-success w-100">
+                Crear cuenta
+                <i class="material-icons">person_add</i>
+              </button>
+            </form>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+  <!-- RECUPERAR CONTRASEÑA -->
+  <div class="modal fade" id="recoverModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius:var(--radius);box-shadow:var(--shadow-lg);">
+        <div class="modal-header" style="border-bottom:1px solid var(--card-border);">
+          <h5 class="modal-title" style="font-weight:700;display:flex;align-items:center;gap:8px;"><i class="material-icons" style="color:var(--accent);">lock_reset</i> Recuperar contraseña</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" style="padding:24px;">
+          <div id="recoverStep1">
+            <p style="color:var(--text-muted);font-size:13px;margin:0 0 12px;">Ingresa tu correo y te mostraremos tu pregunta de seguridad.</p>
+            <input type="email" id="recoverEmail" class="form-control" placeholder="Correo electrónico" autocomplete="email">
+          </div>
+          <div id="recoverStep2" style="display:none;">
+            <div class="recover-qbox">
+              <p class="q-label">Pregunta de seguridad</p>
+              <p class="q-text" id="recoverQuestion"></p>
+            </div>
+            <div class="mb-2">
+              <label class="form-label" for="recoverAnswer"><i class="material-icons">help</i>Tu respuesta</label>
+              <input type="text" id="recoverAnswer" class="form-control" placeholder="Respuesta" autocomplete="off">
+            </div>
+            <div class="mb-2">
+              <label class="form-label" for="recoverEmailPassword"><i class="material-icons">lock</i>Nueva contraseña (mín. 6 caracteres)</label>
+              <div class="password-wrapper">
+                <input type="password" id="recoverEmailPassword" class="form-control" minlength="6" autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly')">
+                <button type="button" class="password-toggle" onclick="togglePW('recoverEmailPassword', this)">
+                  <i class="material-icons">visibility_off</i>
+                </button>
+              </div>
+            </div>
+            <div class="mb-2">
+              <label class="form-label" for="recoverEmailPassword2"><i class="material-icons">lock</i>Confirmar contraseña</label>
+              <div class="password-wrapper">
+                <input type="password" id="recoverEmailPassword2" class="form-control" minlength="6" autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly')">
+                <button type="button" class="password-toggle" onclick="togglePW('recoverEmailPassword2', this)">
+                  <i class="material-icons">visibility_off</i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer" style="padding:12px 24px 16px;border-top:1px solid var(--card-border);">
+          <button type="button" class="btn btn-ghost" data-bs-dismiss="modal" style="font-weight:600;color:var(--text-muted);">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="recoverContinue" style="display:none;"><i class="material-icons" style="font-size:16px;">arrow_forward</i> Continuar</button>
+          <button type="button" class="btn btn-primary" id="recoverSubmit" style="display:none;"><i class="material-icons" style="font-size:16px;">check</i> Cambiar contraseña</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="js/api.js?v=20260809d"></script>
+  <script src="js/app.js?v=20260809d"></script>
+</body>
+</html>

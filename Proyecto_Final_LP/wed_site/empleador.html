@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script>try{var t=localStorage.getItem("lw_tema")||"claro";var d=t==="oscuro"||(t==="auto"&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(d)document.documentElement.setAttribute("data-theme","dark");}catch(e){}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkWork - Empleador</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css?v=20260811c">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      <a href="#" class="navbar-brand brand-logo">
+        <span class="logo-icon">LW</span>
+        <span class="logo-text">LinkWork</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobile-nav" aria-controls="mobile-nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a href="#!" class="nav-link nav-active dd-section-trigger" data-section="publicar"><i class="material-icons">add_circle</i>Publicar</a></li>
+          <li class="nav-item"><a href="#!" class="nav-link dd-section-trigger" data-section="misempleos"><i class="material-icons">work</i>Mis Empleos</a></li>
+          <li class="nav-item"><a href="#!" class="nav-link dd-section-trigger" data-section="solicitudes"><i class="material-icons">people</i>Solicitudes</a></li>
+          <li class="nav-item"><a href="#!" class="nav-link dd-section-trigger" data-section="servicios"><i class="material-icons">store</i>Servicios</a></li>
+          <li class="nav-item"><a href="#!" class="nav-link dd-section-trigger" data-section="chat"><i class="material-icons">chat</i>Chat</a></li><li class="nav-item"><a href="#!" class="nav-link" data-grupo-nav="grupo" onclick="openGrupoChat(event)"><i class="material-icons">groups</i>Chat de equipo</a></li>
+          <li class="nav-item"><a href="#!" class="nav-link dd-section-trigger" data-section="empresa"><i class="material-icons">business</i>Empresa</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#!" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="material-icons">person</i>
+              <span class="username-text" id="navUsername">Usuario</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end user-dropdown" id="user-menu" aria-labelledby="userDropdown">
+              <li class="dropdown-user-header">
+                <div class="dropdown-avatar" id="ddAvatar">LW</div>
+                <div class="dropdown-user-info">
+                  <strong id="ddName">Usuario</strong>
+                  <span id="ddEmail">email</span>
+                  <span class="dropdown-role-badge" id="ddRole">empleador</span>
+                </div>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#!" id="perfilItem"><i class="material-icons">account_circle</i>Mi Perfil</a></li>
+              <li><a class="dropdown-item" href="#!" id="configItem"><i class="material-icons">settings</i>Configuración</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="material-icons">exit_to_app</i>Cerrar Sesión</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="mobile-nav" aria-labelledby="mobile-nav-label">
+    <div class="offcanvas-header">
+      <span class="sidenav-header" id="mobile-nav-label">
+        <span class="logo-icon" style="width:32px;height:32px;background:linear-gradient(135deg,var(--accent),var(--accent-light));border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:white;">LW</span>
+        LinkWork
+      </span>
+    </div>
+    <div class="offcanvas-body">
+      <a href="#!" class="off-link nav-active dd-section-trigger" data-section="publicar"><i class="material-icons">add_circle</i>Publicar</a>
+      <a href="#!" class="off-link dd-section-trigger" data-section="misempleos"><i class="material-icons">work</i>Mis Empleos</a>
+      <a href="#!" class="off-link dd-section-trigger" data-section="solicitudes"><i class="material-icons">people</i>Solicitudes</a>
+      <a href="#!" class="off-link dd-section-trigger" data-section="servicios"><i class="material-icons">store</i>Servicios</a>
+      <a href="#!" class="off-link dd-section-trigger" data-section="chat"><i class="material-icons">chat</i>Chat</a><a href="#!" class="off-link" data-grupo-nav="grupo" onclick="openGrupoChat(event)"><i class="material-icons">groups</i>Chat de equipo</a>
+      <a href="#!" class="off-link dd-section-trigger" data-section="empresa"><i class="material-icons">business</i>Empresa</a>
+      <div class="off-divider"></div>
+      <a href="#!" class="off-link" id="mobileLogout"><i class="material-icons">exit_to_app</i>Cerrar Sesión</a>
+    </div>
+  </div>
+
+  <main>
+    <div class="container">
+      <!-- SECTION: PUBLICAR -->
+      <div id="sec-publicar" class="section-content">
+        <h4 class="section-title"><i class="material-icons">add_circle</i>Publicar Empleo</h4>
+        <div class="card">
+          <div class="card-body">
+            <form id="jobForm">
+              <div class="mb-3">
+                <label class="form-label" for="jobTitle"><i class="material-icons">work</i>Título del puesto</label>
+                <input type="text" id="jobTitle" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="jobCompany"><i class="material-icons">business</i>Empresa</label>
+                <input type="text" id="jobCompany" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="jobLocation"><i class="material-icons">location_on</i>Ubicación</label>
+                <input type="text" id="jobLocation" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="jobSalary"><i class="material-icons">attach_money</i>Salario (opcional)</label>
+                <input type="text" id="jobSalary" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="jobCupos"><i class="material-icons">groups</i>Cupos disponibles</label>
+                <input type="number" id="jobCupos" class="form-control" min="1" value="1">
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="jobTipo"><i class="material-icons">schedule</i>Tipo de contratación</label>
+                <select id="jobTipo" class="form-select">
+                  <option value="fijo">Fijo</option>
+                  <option value="hora">Por Hora</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="jobFormalidad"><i class="material-icons">badge</i>Formalidad del trabajo</label>
+                <select id="jobFormalidad" class="form-select">
+                  <option value="formal">Formal</option>
+                  <option value="informal">Informal</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label"><i class="material-icons">access_time</i>Horario laboral (opcional)</label>
+                <div class="row g-2">
+                  <div class="col-6">
+                    <input type="time" id="jobHoraEntrada" class="form-control" title="Hora de entrada">
+                  </div>
+                  <div class="col-6">
+                    <input type="time" id="jobHoraSalida" class="form-control" title="Hora de salida">
+                  </div>
+                </div>
+                <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Se aplicará automáticamente a los trabajadores aceptados. Puedes cambiarlo luego en los Ajustes del empleo.</div>
+              </div>
+              <div class="mb-3" id="jobHorasField" style="display:none;">
+                <label class="form-label" for="jobHoras"><i class="material-icons">schedule</i>Horas por semana</label>
+                <input type="number" id="jobHoras" class="form-control" min="1">
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="jobDescription"><i class="material-icons">description</i>Descripción del puesto</label>
+                <textarea id="jobDescription" class="form-control" required></textarea>
+              </div>
+
+              <div class="img-upload-area" id="uploadArea">
+                <i class="material-icons">add_photo_alternate</i>
+                <p>Haz clic para subir una imagen del puesto</p>
+                <img id="uploadPreview" class="preview" style="display:none;">
+              </div>
+              <input type="file" id="fileInput" accept="image/*" style="display:none;">
+              <input type="hidden" id="jobImagen">
+
+              <button type="submit" class="btn btn-primary w-100" style="margin-top:16px;">
+                <i class="material-icons">send</i>
+                Publicar Empleo
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION: MIS EMPLEOS -->
+      <div id="sec-misempleos" class="section-content" style="display:none;">
+        <div class="explore-header">
+          <div>
+            <h4 class="section-title" style="margin:0;"><i class="material-icons">list_alt</i>Mis Empleos</h4>
+            <p style="color:var(--text-muted);margin:5px 0 0 0;font-size:14px;">Gestiona tus ofertas laborales publicadas</p>
+          </div>
+          <span class="badge-count" id="myJobCount">0</span>
+        </div>
+        <div class="list-toolbar">
+          <input type="search" class="form-control" placeholder="Buscar en mis empleos..." oninput="filtrarLista('myJobs', this.value)">
+          <span class="list-results" id="myJobs_count"></span>
+        </div>
+        <div id="myJobs"></div>
+      </div>
+
+      <!-- SECTION: EMPRESA -->
+      <div id="sec-empresa" class="section-content" style="display:none;">
+        <div class="explore-header">
+          <div>
+            <h4 class="section-title" style="margin:0;"><i class="material-icons">business</i>Empresa</h4>
+            <p style="color:var(--text-muted);margin:5px 0 0 0;font-size:14px;">Tu compañía, los trabajos a los que pertenece tu equipo y quién lo compone</p>
+          </div>
+        </div>
+        <div id="empresaEmpleadorList"></div>
+
+        <div class="card" style="margin:0 0 24px;">
+          <div class="card-body">
+            <span class="card-title"><i class="material-icons">fact_check</i>Solicitudes de personal</span>
+            <p style="color:var(--text-muted);font-size:13px;margin:4px 0 10px;">Vacaciones y permisos solicitados por tus empleados.</p>
+            <div id="solicitudesNsp"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION: SOLICITUDES -->
+      <div id="sec-solicitudes" class="section-content" style="display:none;">
+        <div class="explore-header">
+          <div>
+            <h4 class="section-title" style="margin:0;"><i class="material-icons">inbox</i>Solicitudes Recibidas</h4>
+            <p style="color:var(--text-muted);margin:5px 0 0 0;font-size:14px;">Candidatos que han aplicado a tus empleos</p>
+          </div>
+          <span class="badge-count" id="solicitudesCount">0</span>
+        </div>
+        <div class="list-toolbar">
+          <input type="search" class="form-control" placeholder="Buscar candidatos por nombre o mensaje..." oninput="filtrarLista('solicitudesList', this.value)">
+          <span class="list-results" id="solicitudesList_count"></span>
+        </div>
+        <div id="solicitudesList"></div>
+      </div>
+
+      <!-- SECTION: SERVICIOS DISPONIBLES -->
+      <div id="sec-servicios" class="section-content" style="display:none;">
+        <div class="explore-header">
+          <div>
+            <h4 class="section-title" style="margin:0;"><i class="material-icons">store</i>Servicios Disponibles</h4>
+            <p style="color:var(--text-muted);margin:5px 0 0 0;font-size:14px;">Servicios profesionales que ofrecen los proveedores</p>
+          </div>
+          <span class="badge-count" id="empleadorServCount">0</span>
+        </div>
+        <div id="empleadorServList"></div>
+      </div>
+
+      <!-- SECTION: CHAT -->
+      <div id="sec-chat" class="section-content" style="display:none;">
+        <div class="explore-header">
+          <div>
+            <h4 class="section-title" style="margin:0;"><i class="material-icons">chat</i>Mensajes</h4>
+            <p style="color:var(--text-muted);margin:5px 0 0 0;font-size:14px;">Conversaciones con trabajadores y proveedores</p>
+          </div>
+        </div>
+        <div id="chatContainer">
+          <div id="misEmpleadosBlock" style="margin-bottom:16px;">
+            <span class="card-title" style="display:block;margin-bottom:8px;"><i class="material-icons">group</i>Mis empleados</span>
+            <div id="misEmpleadosList"></div>
+          </div>
+          <div id="conversationsList"></div>
+          <div id="chatThread" style="display:none;">
+            <div id="chatThreadHeader" style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+              <button id="chatBackBtn" class="btn-ghost" style="padding:0 8px;"><i class="material-icons">arrow_back</i></button>
+              <h5 id="chatThreadTitle" style="margin:0;font-weight:600;font-size:16px;"></h5>
+            </div>
+            <div id="chatMessages" class="chat-box"></div>
+            <form id="chatForm" style="display:flex;gap:8px;margin-top:12px;">
+              <div style="flex:1;margin:0;">
+                <input type="text" id="chatInput" class="form-control" placeholder="Escribe un mensaje..." required>
+              </div>
+              <button type="submit" class="btn btn-primary" style="height:44px;min-width:44px;padding:0 16px;">
+                <i class="material-icons">send</i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="modal fade" id="applyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border:1px solid var(--card-border);border-radius:var(--radius);box-shadow:var(--shadow-lg);">
+        <div class="modal-body" style="padding:24px;">
+          <h5 id="applyModalTitle" style="font-weight:700;margin:0 0 16px;display:flex;align-items:center;gap:8px;">
+            <i class="material-icons" style="color:var(--accent);">send</i> Solicitar
+          </h5>
+          <textarea id="applyMessage" class="form-control" style="min-height:90px;" placeholder="Describe cómo quieres el servicio..."></textarea>
+        </div>
+        <div class="modal-footer" style="padding:8px 24px 16px;border-top:1px solid var(--card-border);">
+          <button type="button" class="btn btn-ghost" data-bs-dismiss="modal" style="font-weight:600;color:var(--text-muted);">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="applySubmitBtn">
+            <i class="material-icons">send</i> Enviar Solicitud
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="ajusteEmpleoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="border:1px solid var(--card-border);border-radius:var(--radius);box-shadow:var(--shadow-lg);">
+        <div class="modal-header" style="border-bottom:1px solid var(--card-border);">
+          <h5 class="modal-title" style="font-weight:700;display:flex;align-items:center;gap:8px;"><i class="material-icons" style="color:var(--accent);">settings</i> Ajustes del empleo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" style="padding:24px;">
+          <input type="hidden" id="ajusteJobId">
+          <div class="mb-3">
+            <label class="form-label" for="ajusteTitle"><i class="material-icons">work</i>Título del puesto</label>
+            <input type="text" id="ajusteTitle" class="form-control">
+          </div>
+          <div class="row g-2">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label class="form-label" for="ajusteCompany"><i class="material-icons">business</i>Empresa</label>
+                <input type="text" id="ajusteCompany" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label class="form-label" for="ajusteLocation"><i class="material-icons">location_on</i>Ubicación</label>
+                <input type="text" id="ajusteLocation" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row g-2">
+            <div class="col-md-4">
+              <div class="mb-3">
+                <label class="form-label" for="ajusteSalary"><i class="material-icons">attach_money</i>Salario</label>
+                <input type="text" id="ajusteSalary" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mb-3">
+                <label class="form-label" for="ajusteCupos"><i class="material-icons">groups</i>Cupos</label>
+                <input type="number" id="ajusteCupos" class="form-control" min="1">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mb-3">
+                <label class="form-label" for="ajusteTipo"><i class="material-icons">schedule</i>Tipo</label>
+                <select id="ajusteTipo" class="form-select">
+                  <option value="fijo">Fijo</option>
+                  <option value="hora">Por Hora</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mb-3">
+                <label class="form-label" for="ajusteFormalidad"><i class="material-icons">badge</i>Formalidad</label>
+                <select id="ajusteFormalidad" class="form-select">
+                  <option value="formal">Formal</option>
+                  <option value="informal">Informal</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3" id="ajusteHorasField" style="display:none;">
+            <label class="form-label" for="ajusteHoras"><i class="material-icons">schedule</i>Horas por semana</label>
+            <input type="number" id="ajusteHoras" class="form-control" min="1">
+          </div>
+          <div class="mb-3">
+            <label class="form-label"><i class="material-icons">access_time</i>Horario laboral</label>
+            <div class="row g-2">
+              <div class="col-6">
+                <input type="time" id="ajusteHoraEntrada" class="form-control" title="Hora de entrada">
+              </div>
+              <div class="col-6">
+                <input type="time" id="ajusteHoraSalida" class="form-control" title="Hora de salida">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="ajusteDescription"><i class="material-icons">description</i>Descripción</label>
+            <textarea id="ajusteDescription" class="form-control" style="min-height:90px;"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="ajusteImagen"><i class="material-icons">image</i>URL de la imagen (opcional)</label>
+            <input type="text" id="ajusteImagen" class="form-control">
+          </div>
+        </div>
+        <div class="modal-footer" style="padding:12px 24px 16px;border-top:1px solid var(--card-border);">
+          <button type="button" class="btn btn-ghost" data-bs-dismiss="modal" style="font-weight:600;color:var(--text-muted);">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="ajusteSaveBtn">
+            <i class="material-icons">save</i> Guardar cambios
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../Login/js/api.js?v=20260811e"></script>
+  <script src="js/nav.js?v=20260811d"></script>
+  <script>
+    function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+    let renderCurrentSection = 'publicar';
+
+    LW.upload = (file) => {
+      const fd = new FormData();
+      fd.append('file', file);
+      return api('POST', '/upload', fd).then(d => d.url);
+    };
+
+    document.addEventListener('DOMContentLoaded', async function () {
+      let user;
+      try { user = await LW.me(); } catch (_) { window.location.href = '../Login/index.html'; return; }
+      if (user.role !== 'empleador') { window.location.href = '../Login/index.html'; return; }
+
+      document.getElementById('ddName').textContent = user.username;
+      document.getElementById('ddEmail').textContent = user.email;
+      document.getElementById('ddRole').textContent = user.role;
+      const initials = (user.username || 'U').substring(0, 2).toUpperCase();
+      document.getElementById('ddAvatar').textContent = initials;
+      document.getElementById('navUsername').textContent = user.username;
+
+      let currentChat = { tipo: null, refId: null, convId: null, otroNombre: null, otroEmail: null, otroId: null };
+
+      document.querySelectorAll('.dd-section-trigger').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          const section = this.dataset.section;
+          document.querySelectorAll('.dd-section-trigger').forEach(a => a.classList.remove('nav-active'));
+          this.classList.add('nav-active');
+          document.querySelectorAll('.section-content').forEach(s => s.style.display = 'none');
+          document.getElementById('sec-' + section).style.display = 'block';
+          switch (section) {
+            case 'misempleos': renderMisEmpleos(); break;
+            case 'solicitudes': renderSolicitudes(); break;
+            case 'servicios': renderServicios(); break;
+            case 'chat': renderConversaciones(); break;
+            case 'empresa':
+              renderEmpresaEmpleador();
+              renderSolicitudesPersonal();
+              break;
+          }
+          closeMobileNav();
+        });
+      });
+
+      document.getElementById('jobTipo').addEventListener('change', function () {
+        document.getElementById('jobHorasField').style.display = this.value === 'hora' ? 'block' : 'none';
+      });
+
+      document.getElementById('uploadArea').addEventListener('click', function () {
+        document.getElementById('fileInput').click();
+      });
+
+      document.getElementById('fileInput').addEventListener('change', async function (e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        try {
+          const url = await LW.upload(file);
+          document.getElementById('jobImagen').value = url;
+          const preview = document.getElementById('uploadPreview');
+          preview.src = url;
+          preview.style.display = 'block';
+          document.querySelector('#uploadArea p').textContent = 'Imagen seleccionada';
+        } catch (err) {
+          swalErr(err);
+        }
+      });
+
+      document.getElementById('jobForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const data = {
+          title: document.getElementById('jobTitle').value,
+          company: document.getElementById('jobCompany').value,
+          location: document.getElementById('jobLocation').value,
+          salary: document.getElementById('jobSalary').value,
+          description: document.getElementById('jobDescription').value,
+          tipo: document.getElementById('jobTipo').value,
+          formalidad: document.getElementById('jobFormalidad').value,
+          horas: document.getElementById('jobTipo').value === 'hora' ? document.getElementById('jobHoras').value : null,
+          cupos: document.getElementById('jobCupos').value || 1,
+          hora_entrada: document.getElementById('jobHoraEntrada').value || null,
+          hora_salida: document.getElementById('jobHoraSalida').value || null,
+          imagen: document.getElementById('jobImagen').value || null
+        };
+        try {
+          await LW.crearEmpleo(data);
+          this.reset();
+          document.getElementById('jobHorasField').style.display = 'none';
+          document.getElementById('uploadPreview').style.display = 'none';
+          document.querySelector('#uploadArea p').textContent = 'Haz clic para subir una imagen del puesto';
+          document.getElementById('jobImagen').value = '';
+          swalOk('Empleo publicado');
+        } catch (err) {
+          swalErr(err);
+        }
+      });
+
+      // Chat event listeners
+      document.getElementById('chatForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const msg = document.getElementById('chatInput').value.trim();
+        if (!msg) return;
+        try {
+          const msgPayload = {
+            tipo_ref: currentChat.tipo || 'general',
+            ref_id: currentChat.refId || 0,
+            mensaje: msg
+          };
+          if (currentChat.otroId) {
+            msgPayload.destinatario_id = currentChat.otroId;
+            msgPayload.destinatario_nombre = currentChat.otroNombre;
+          } else if (currentChat.otroEmail) {
+            msgPayload.destinatario_email = currentChat.otroEmail;
+            msgPayload.destinatario_nombre = currentChat.otroNombre;
+          }
+          await LW.enviarMensaje(msgPayload);
+          document.getElementById('chatInput').value = '';
+          loadConversation(currentChat.otroEmail, currentChat.otroId, currentChat.otroNombre);
+        } catch (err) {
+          Swal.fire({ icon: 'error', iconColor: '#EF4444', title: 'Error', text: err.message, background: '#FFFFFF', color: '#1E293B', confirmButtonColor: '#2563EB', padding: '24px' });
+        }
+      });
+
+      document.getElementById('chatBackBtn').addEventListener('click', function () {
+        document.getElementById('chatThread').style.display = 'none';
+        document.getElementById('conversationsList').style.display = 'block';
+      });
+
+      async function renderMisEmpleos() {
+        const container = document.getElementById('myJobs');
+        try {
+          const jobs = await LW.misEmpleos();
+          document.getElementById('myJobCount').textContent = jobs.length;
+          if (jobs.length === 0) {
+            container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">work_off</i><h5>Sin empleos</h5><p>Aún no has publicado ningún empleo.</p></div>';
+            return;
+          }
+          container.innerHTML = jobs.map(j => {
+            const isHourly = j.tipo === 'hora';
+            return '<div class="listing-card">' +
+              '<div class="listing-badge jobs">Empleo</div>' +
+              (j.imagen ? '<div class="listing-img"><img src="' + esc(j.imagen) + '" alt="' + esc(j.title) + '"></div>' : '') +
+              '<div class="listing-content">' +
+                '<div class="listing-header">' +
+                  '<h3>' + esc(j.title) + '</h3>' +
+                  '<span class="listing-company">' + esc(j.company) + '</span>' +
+                '</div>' +
+                '<div class="listing-details">' +
+                  '<span><i class="material-icons">location_on</i> ' + esc(j.location) + '</span>' +
+                  (j.salary ? '<span><i class="material-icons">attach_money</i> $' + esc(j.salary) + '</span>' : '') +
+                  (j.tipo ? '<span class="status-badge ' + (isHourly ? 'pendiente' : 'aceptado') + '">' + (isHourly ? 'Por Hora' : 'Fijo') + '</span>' : '') +
+                  (j.formalidad ? '<span class="status-badge ' + (j.formalidad === 'formal' ? 'aceptado' : 'pendiente') + '">' + (j.formalidad === 'formal' ? 'Formal' : 'Informal') + '</span>' : '') +
+                  (isHourly && j.horas ? '<span><i class="material-icons">schedule</i> ' + j.horas + 'h/sem</span>' : '') +
+                  (j.cupos ? '<span><i class="material-icons">groups</i> ' + (j.cupos_ocupados || 0) + '/' + j.cupos + ' cupos</span>' : '') +
+                  (j.hora_entrada && j.hora_salida ? '<span><i class="material-icons">access_time</i> ' + esc(j.hora_entrada) + ' - ' + esc(j.hora_salida) + '</span>' : '') +
+                '</div>' +
+                '<p class="listing-desc">' + esc(j.description) + '</p>' +
+              '</div>' +
+              '<div class="listing-action">' +
+                '<button class="btn-listing-sm edit-job-btn" data-job=\'' + JSON.stringify(j).replace(/'/g, '&#39;') + '\' style="color:var(--accent);border-color:var(--accent);">' +
+                  '<i class="material-icons" style="font-size:14px;">settings</i> Ajustes' +
+                '</button>' +
+                '<button class="btn-listing-sm delete-job-btn" data-id="' + j.id + '" style="color:var(--accent2);border-color:var(--accent2);">' +
+                  '<i class="material-icons" style="font-size:14px;">delete</i> Eliminar' +
+                '</button>' +
+              '</div>' +
+            '</div>';
+          }).join('');
+          document.querySelectorAll('#myJobs .delete-job-btn').forEach(btn => {
+            btn.addEventListener('click', async function () {
+              try {
+                await LW.deleteEmpleo(this.dataset.id);
+                swalOk('Empleo eliminado');
+                renderMisEmpleos();
+              } catch (err) { swalErr(err); }
+            });
+          });
+          document.querySelectorAll('#myJobs .edit-job-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+              const j = JSON.parse(btn.dataset.job ? btn.dataset.job.replace(/&#39;/g, "'") : '{}');
+              abrirAjustesEmpleo(j);
+            });
+          });
+        } catch (err) {
+          container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">error</i><h5>Error</h5><p>' + esc(err.message) + '</p></div>';
+        }
+      }
+
+      function abrirAjustesEmpleo(j) {
+        document.getElementById('ajusteJobId').value = j.id;
+        document.getElementById('ajusteTitle').value = j.title || '';
+        document.getElementById('ajusteCompany').value = j.company || '';
+        document.getElementById('ajusteLocation').value = j.location || '';
+        document.getElementById('ajusteSalary').value = j.salary || '';
+        document.getElementById('ajusteCupos').value = j.cupos || 1;
+        document.getElementById('ajusteTipo').value = j.tipo || 'fijo';
+        document.getElementById('ajusteFormalidad').value = j.formalidad || 'formal';
+        document.getElementById('ajusteHoras').value = j.horas || '';
+        document.getElementById('ajusteHoraEntrada').value = j.hora_entrada || '';
+        document.getElementById('ajusteHoraSalida').value = j.hora_salida || '';
+        document.getElementById('ajusteDescription').value = j.description || '';
+        document.getElementById('ajusteImagen').value = j.imagen || '';
+        document.getElementById('ajusteHorasField').style.display = (j.tipo === 'hora') ? '' : 'none';
+        const modal = new bootstrap.Modal(document.getElementById('ajusteEmpleoModal'));
+        modal.show();
+      }
+
+      document.getElementById('ajusteTipo').addEventListener('change', function () {
+        document.getElementById('ajusteHorasField').style.display = (this.value === 'hora') ? '' : 'none';
+      });
+
+      document.getElementById('ajusteSaveBtn').addEventListener('click', async function () {
+        const id = document.getElementById('ajusteJobId').value;
+        const data = {
+          title: document.getElementById('ajusteTitle').value,
+          company: document.getElementById('ajusteCompany').value,
+          location: document.getElementById('ajusteLocation').value,
+          salary: document.getElementById('ajusteSalary').value,
+          description: document.getElementById('ajusteDescription').value,
+          tipo: document.getElementById('ajusteTipo').value,
+          formalidad: document.getElementById('ajusteFormalidad').value,
+          horas: document.getElementById('ajusteHoras').value || null,
+          cupos: document.getElementById('ajusteCupos').value || 1,
+          hora_entrada: document.getElementById('ajusteHoraEntrada').value || null,
+          hora_salida: document.getElementById('ajusteHoraSalida').value || null,
+          imagen: document.getElementById('ajusteImagen').value || null
+        };
+        try {
+          await LW.editarEmpleo(id, data);
+          bootstrap.Modal.getInstance(document.getElementById('ajusteEmpleoModal')).hide();
+          swalOk('Empleo actualizado');
+          renderMisEmpleos();
+        } catch (err) { swalErr(err); }
+      });
+
+      async function renderEmpresaEmpleador() {
+        const box = document.getElementById('empresaEmpleadorList');
+        let empresa = {}, contratos = [];
+        try { empresa = (await LW.getEmpresa()) || {}; } catch (_) {}
+        try { contratos = (await LW.misContratos()) || []; } catch (_) {}
+        const activos = contratos.filter(c => c.tipo === 'empleo' && c.estado === 'activo');
+        const nomina = activos.reduce((s, c) => s + (parseFloat(c.monto) || 0), 0);
+        const equipos = new Set(activos.map(c => c.ref_titulo || 'Sin título')).size;
+        let estadoMap = {};
+        try { const sols = await LW.solicitudesRecibidas(); sols.filter(s=>s.estado==='aceptado').forEach(s=>{ estadoMap[s.trabajador_email]=s.solicitud_tipo; }); } catch(_){}
+        function estadoBadge(email){
+          const t = estadoMap[email];
+          if(t==='vacaciones') return '<span class="badge text-bg-info emp-team-tag" style="font-size:11px;">De Vacaciones</span>';
+          if(t==='permiso') return '<span class="badge text-bg-warning emp-team-tag" style="font-size:11px;">De Permiso</span>';
+          return '<span class="badge text-bg-success emp-team-tag" style="font-size:11px;">Activo</span>';
+        }
+
+        let empHtml = '<div class="emp-hero">' +
+          (empresa.logo ? '<img src="' + esc(empresa.logo) + '" class="emp-hero-logo" alt="Logo">' : '<div class="emp-hero-logo"><i class="material-icons">business</i></div>') +
+          '<div class="emp-hero-info">' +
+            '<h5>' + esc(empresa.nombre || 'Mi empresa') + '</h5>' +
+            ([empresa.rubro, empresa.sede].filter(Boolean).join(' &middot; ') ? '<div class="emp-hero-sub">' + esc([empresa.rubro, empresa.sede].filter(Boolean).join(' &middot; ')) + '</div>' : '') +
+            '<div class="emp-chips">' +
+              (empresa.nit ? '<span class="emp-chip"><i class="material-icons">badge</i>NIT <b>' + esc(empresa.nit) + '</b></span>' : '') +
+              (empresa.tamano ? '<span class="emp-chip"><i class="material-icons">groups</i><b>' + esc(empresa.tamano) + '</b></span>' : '') +
+              (empresa.web ? '<span class="emp-chip"><i class="material-icons">language</i><b>' + esc(empresa.web) + '</b></span>' : '') +
+            '</div>' +
+          '</div>' +
+          (empresa.descripcion ? '<div class="emp-hero-desc" style="flex-basis:100%;">' + esc(empresa.descripcion) + '</div>' : '') +
+        '</div>';
+
+        empHtml += '<div class="emp-stats">' +
+          '<div class="emp-stat"><div class="emp-stat-label"><i class="material-icons">fact_check</i>Contratos activos</div><div class="emp-stat-value">' + activos.length + '</div></div>' +
+          '<div class="emp-stat"><div class="emp-stat-label"><i class="material-icons">group</i>En el equipo</div><div class="emp-stat-value">' + new Set(activos.map(c => c.trabajador_email)).size + '</div></div>' +
+          '<div class="emp-stat"><div class="emp-stat-label"><i class="material-icons">payments</i>Nómina mensual</div><div class="emp-stat-value">' + fmtCOP(nomina) + '</div></div>' +
+          '<div class="emp-stat"><div class="emp-stat-label"><i class="material-icons">workspaces</i>Equipos por puesto</div><div class="emp-stat-value">' + equipos + '</div></div>' +
+        '</div>';
+
+        empHtml += '<div class="emp-card" style="margin:18px 0 24px;">' +
+          '<h6 class="emp-sec-title"><i class="material-icons">groups</i>Trabajos de mi equipo</h6>' +
+          '<p class="emp-sec-sub">Cada trabajo y quién pertenece a él.</p>';
+
+if (!activos.length) {
+          empHtml += '<div class="empty-state" style="margin:0;"><i class="material-icons empty-icon">work_off</i><h5>Tu equipo aún no se forma</h5><p>Cuando aceptes candidatos y se creen contratos, aquí verás cada trabajo y quién pertenece a él.</p></div>';
+        } else {
+          const porTrabajo = {};
+          activos.forEach(c => { (porTrabajo[c.ref_titulo || 'Sin título'] = porTrabajo[c.ref_titulo || 'Sin título'] || []).push(c); });
+          empHtml += Object.keys(porTrabajo).map(titulo => {
+            const cs = porTrabajo[titulo];
+            return '<div class="emp-group">' +
+              '<div class="emp-group-head"><i class="material-icons">work</i>' + esc(titulo) +
+              '<span class="emp-group-count">' + cs.length + '</span></div>' +
+              '<div class="emp-group-body">' +
+                cs.map(c =>
+                  '<div class="emp-team-item">' +
+                    '<div class="emp-avatar">' + esc((c.trabajador_nombre || '?').substring(0, 2).toUpperCase()) + '</div>' +
+                    '<div class="emp-team-meta">' +
+                      '<div class="emp-team-name">' + esc(c.trabajador_nombre) + '</div>' +
+                      '<div class="emp-team-sub">' + esc(c.trabajador_email) + ' &middot; ' + fmtCOP(c.monto) + '/mes &middot; ' + (c.dias_trabajados || 0) + ' días</div>' +
+                    '</div>' +
+                    + estadoBadge(c.trabajador_email) +
+                    '<div class="emp-team-actions" style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">' +
+                      '<button class="emp-action-btn" data-accion="config" data-id="' + c.id + '" data-monto="' + esc(c.monto || '') + '" data-he="' + esc(c.hora_entrada || '') + '" data-hs="' + esc(c.hora_salida || '') + '" title="Configurar contrato"><i class="material-icons">tune</i> Configurar</button>' +
+                      '<button class="emp-action-btn" data-accion="recibo" data-id="' + c.id + '" title="Ver recibo"><i class="material-icons">receipt_long</i> Recibo</button>' +
+                      '<button class="emp-action-btn" data-accion="finalizar" data-id="' + c.id + '" title="Finalizar contrato"><i class="material-icons">check_circle</i> Finalizar</button>' +
+                      '<button class="emp-icon-btn" data-accion="chat" data-refid="' + c.ref_id + '" data-titulo="' + esc(c.ref_titulo || '') + '" data-email="' + esc(c.trabajador_email || '') + '" data-nombre="' + esc(c.trabajador_nombre || '') + '" title="Chat privado"><i class="material-icons">chat</i></button>' +
+                      '<button class="emp-icon-btn" data-accion="perfil" data-email="' + esc(c.trabajador_email || '') + '" title="Ver perfil"><i class="material-icons">person</i></button>' +
+                    '</div>' +
+                  '</div>').join('') +
+              '</div>' +
+            '</div>';
+          }).join('');
+        }
+
+        empHtml += '</div>';
+
+        box.innerHTML = empHtml;
+        box.querySelectorAll('.emp-icon-btn[data-accion="chat"]').forEach(b => {
+          b.addEventListener('click', function () {
+            openChatTab('empleo', this.dataset.refid, this.dataset.titulo, this.dataset.email, this.dataset.nombre);
+          });
+        });
+        box.querySelectorAll('.emp-icon-btn[data-accion="perfil"]').forEach(b => {
+          b.addEventListener('click', function () { openPerfilPublico(this.dataset.email); });
+        });
+        box.querySelectorAll('.emp-action-btn[data-accion="recibo"]').forEach(b => {
+          b.addEventListener('click', function () { openRecibo(this.dataset.id); });
+        });
+        box.querySelectorAll('.emp-action-btn[data-accion="config"]').forEach(b => {
+          b.addEventListener('click', function () {
+            abrirConfigContrato(this.dataset.id, this.dataset.monto, this.dataset.he, this.dataset.hs);
+          });
+        });
+        box.querySelectorAll('.emp-action-btn[data-accion="finalizar"]').forEach(b => {
+          b.addEventListener('click', async function () {
+            const r = await Swal.fire({
+              icon: 'question', iconColor: '#F59E0B', title: '¿Finalizar contrato?',
+              text: 'Esta acción marcará el contrato como finalizado.',
+              showCancelButton: true, confirmButtonText: 'Finalizar', cancelButtonText: 'Cancelar',
+              confirmButtonColor: '#F59E0B', cancelButtonColor: '#94A3B8',
+              background: '#FFFFFF', color: '#1E293B', padding: '24px', reverseButtons: true
+            });
+            if (!r.isConfirmed) return;
+            try {
+              await LW.finalizarContrato(this.dataset.id);
+              swalOk('Contrato finalizado');
+              renderEmpresaEmpleador();
+            } catch (err) { swalErr(err); }
+          });
+        });
+      }
+
+      async function renderSolicitudes() {
+        const container = document.getElementById('solicitudesList');
+        try {
+          const apps = await LW.aplicacionesRecibidas();
+          const empleos = apps.filter(a => a.tipo === 'empleo' && a.status === 'pendiente');
+          document.getElementById('solicitudesCount').textContent = empleos.length;
+          if (empleos.length === 0) {
+            container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">inbox</i><h5>Sin solicitudes</h5><p>No has recibido solicitudes para tus empleos aún.</p></div>';
+            return;
+          }
+          container.innerHTML = empleos.map(a => {
+            return '<div class="listing-card">' +
+              '<div class="listing-badge jobs">Empleo</div>' +
+              '<div class="listing-content">' +
+                '<div class="listing-header">' +
+                  '<h3>' + esc(a.solicitante_nombre || 'Anónimo') + '</h3>' +
+                  (a.ref_titulo ? '<span class="listing-company">' + esc(a.ref_titulo) + '</span>' : '') +
+                '</div>' +
+                (a.mensaje ? '<p class="listing-desc" style="-webkit-line-clamp:3;"><strong>Mensaje:</strong> ' + esc(a.mensaje) + '</p>' : '') +
+              '</div>' +
+              '<div class="listing-action">' +
+                '<button class="btn-listing perfil-btn" data-email="' + esc(a.solicitante_email || '') + '" style="background:#6366F1;">' +
+                  '<i class="material-icons">person</i> Perfil' +
+                '</button>' +
+                '<button class="btn-listing chat-sol-btn" data-tipo="empleo" data-refid="' + a.ref_id + '" data-reftitulo="' + esc(a.ref_titulo || '') + '" data-email="' + esc(a.solicitante_email || '') + '" data-username="' + esc(a.solicitante_nombre || '') + '" style="background:var(--accent);">' +
+                  '<i class="material-icons">chat</i> Chat' +
+                '</button>' +
+                '<button class="btn-listing accept-btn" data-id="' + a.id + '" data-nombre="' + esc(a.solicitante_nombre) + '" data-email="' + esc(a.solicitante_email || '') + '" data-refid="' + a.ref_id + '" data-reftitulo="' + esc(a.ref_titulo || '') + '" style="background:var(--success);">' +
+                  '<i class="material-icons">check</i> Aceptar' +
+                '</button>' +
+                '<button class="btn-listing-sm reject-btn" data-id="' + a.id + '" style="color:var(--accent2);border-color:var(--accent2);">' +
+                  '<i class="material-icons" style="font-size:14px;">close</i> Rechazar' +
+                '</button>' +
+              '</div>' +
+            '</div>';
+          }).join('');
+          document.querySelectorAll('#solicitudesList .perfil-btn').forEach(btn => {
+            btn.addEventListener('click', function () { openPerfilPublico(this.dataset.email); });
+          });
+          document.querySelectorAll('#solicitudesList .accept-btn').forEach(btn => {
+            btn.addEventListener('click', async function () {
+              const id = this.dataset.id;
+              const nombre = this.dataset.nombre;
+              const email = this.dataset.email;
+              const refId = this.dataset.refid;
+              const refTitulo = this.dataset.reftitulo;
+              const { value: monto } = await Swal.fire({
+                title: 'Crear Contrato',
+                text: 'Ingresa el monto del contrato para ' + nombre,
+                input: 'number',
+                inputPlaceholder: 'Monto del contrato',
+                inputAttributes: { min: '0.01', step: '0.01' },
+                showCancelButton: true,
+                confirmButtonText: 'Crear',
+                cancelButtonText: 'Cancelar',
+                confirmButtonColor: '#10B981',
+                cancelButtonColor: '#94A3B8',
+                inputValidator: v => { if (!v || parseFloat(v) <= 0) return 'Ingresa un monto válido'; },
+                background: '#FFFFFF', color: '#1E293B', padding: '24px', reverseButtons: true
+              });
+              if (!monto) return;
+              try {
+                await LW.cambiarEstadoAplicacion(id, 'aceptado');
+                await LW.crearContrato({
+                  trabajador_id: null,
+                  trabajador_nombre: nombre,
+                  trabajador_email: email,
+                  tipo: 'empleo',
+                  ref_id: refId,
+                  ref_titulo: refTitulo,
+                  monto: parseFloat(monto)
+                });
+                swalOk('Contrato creado exitosamente');
+                renderSolicitudes();
+              } catch (err) { swalErr(err); }
+            });
+          });
+          document.querySelectorAll('#solicitudesList .reject-btn').forEach(btn => {
+            btn.addEventListener('click', async function () {
+              try {
+                await LW.cambiarEstadoAplicacion(this.dataset.id, 'rechazado');
+                swalOk('Solicitud rechazada');
+                renderSolicitudes();
+              } catch (err) { swalErr(err); }
+            });
+          });
+          document.querySelectorAll('#solicitudesList .chat-sol-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+              openChatTab(this.dataset.tipo, this.dataset.refid, this.dataset.reftitulo, this.dataset.email, this.dataset.username);
+            });
+          });
+        } catch (err) {
+          container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">error</i><h5>Error</h5><p>' + esc(err.message) + '</p></div>';
+        }
+      }
+
+      async function abrirConfigContrato(id, montoActual, horaE, horaS) {
+        const { value } = await Swal.fire({
+          title: 'Configurar contrato',
+          html:
+            '<label style="display:block;text-align:left;font-size:13px;color:var(--text-muted);margin-bottom:4px;">Sueldo mensual (COP)</label>' +
+            '<input id="cfMonto" class="swal2-input" type="number" min="0" step="0.01" value="' + esc(montoActual || '') + '" style="width:100%;">' +
+            '<label style="display:block;text-align:left;font-size:13px;color:var(--text-muted);margin:10px 0 4px;">Hora de entrada</label>' +
+            '<input id="cfHoraEnt" class="swal2-input" type="time" value="' + esc(horaE || '') + '" style="width:100%;">' +
+            '<label style="display:block;text-align:left;font-size:13px;color:var(--text-muted);margin:10px 0 4px;">Hora de salida</label>' +
+            '<input id="cfHoraSal" class="swal2-input" type="time" value="' + esc(horaS || '') + '" style="width:100%;">',
+          showCancelButton: true, confirmButtonText: 'Guardar', cancelButtonText: 'Cancelar',
+          confirmButtonColor: '#10B981', cancelButtonColor: '#94A3B8', background: '#FFFFFF', color: '#1E293B', padding: '24px', reverseButtons: true, focusConfirm: false,
+          preConfirm: () => {
+            const g = Swal.getPopup();
+            const m = parseFloat(g.querySelector('#cfMonto').value);
+            if (isNaN(m) || m < 0) return Swal.showValidationMessage('Ingresa un sueldo válido');
+            return { monto: m, hora_entrada: g.querySelector('#cfHoraEnt').value || null, hora_salida: g.querySelector('#cfHoraSal').value || null };
+          }
+        });
+        if (!value) return;
+        try {
+          await LW.setHorario(id, value);
+          swalOk('Contrato configurado');
+          renderEmpresaEmpleador();
+        } catch (err) { swalErr(err); }
+      }
+
+      async function renderServicios() {
+        const container = document.getElementById('empleadorServList');
+        try {
+          const servicios = await LW.getServicios();
+          document.getElementById('empleadorServCount').textContent = servicios.length;
+          if (servicios.length === 0) {
+            container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">store</i><h5>Sin servicios</h5><p>No hay servicios publicados por los proveedores aún.</p></div>';
+            return;
+          }
+          container.innerHTML = servicios.map(s => {
+            return '<div class="listing-card">' +
+              '<div class="listing-badge services">Servicio</div>' +
+              (s.imagen ? '<div class="listing-img"><img src="' + esc(s.imagen) + '" alt="' + esc(s.title) + '"></div>' : '') +
+              '<div class="listing-content">' +
+                '<div class="listing-header">' +
+                  '<h3>' + esc(s.title) + '</h3>' +
+                  '<span class="listing-category">' + esc(s.category) + '</span>' +
+                '</div>' +
+                '<div class="listing-details">' +
+                  (s.price ? '<span><i class="material-icons">attach_money</i> $' + esc(s.price) + '</span>' : '') +
+                  (s.duracion ? '<span><i class="material-icons">schedule</i> ' + esc(s.duracion) + '</span>' : '') +
+                  (s.ubicacion ? '<span><i class="material-icons">place</i> ' + esc(s.ubicacion) + '</span>' : '') +
+                  '<span><i class="material-icons">person</i> ' + esc(s.provider || 'Proveedor') + '</span>' +
+                '</div>' +
+                '<p class="listing-desc">' + esc(s.description) + '</p>' +
+              '</div>' +
+              '<div class="listing-action">' +
+                '<button class="btn-listing-sm solicit-btn" data-type="servicio" data-id="' + s.id + '" data-title="' + esc(s.title) + '" style="background:var(--accent);"><i class="material-icons" style="font-size:14px;">send</i> Solicitar</button>' +
+                (s.providerEmail === user.email ? '' : '<button class="btn-listing-sm chat-serv-btn" data-type="servicio" data-id="' + s.id + '" data-title="' + esc(s.title) + '" data-email="' + esc(s.providerEmail) + '" data-ownername="' + esc(s.provider || '') + '"><i class="material-icons" style="font-size:14px;">chat</i> Contactar</button>' +
+                '<button class="btn-listing-sm perfil-serv-btn" data-email="' + esc(s.providerEmail) + '"><i class="material-icons" style="font-size:14px;">person</i> Perfil</button>') +
+              '</div>' +
+            '</div>';
+          }).join('');
+          document.querySelectorAll('#empleadorServList .chat-serv-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+              openChatTab(this.dataset.type, this.dataset.id, this.dataset.title, this.dataset.email, this.dataset.ownername);
+            });
+          });
+          document.querySelectorAll('#empleadorServList .perfil-serv-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+              openPerfilPublico(this.dataset.email);
+            });
+          });
+          document.querySelectorAll('#empleadorServList .solicit-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+              openApplyModal(this.dataset.type, this.dataset.id, this.dataset.title);
+            });
+          });
+        } catch (err) {
+          container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">error</i><h5>Error</h5><p>' + esc(err.message) + '</p></div>';
+        }
+      }
+
+      let applyData = { type: null, id: null, title: null };
+      const applyModal = new bootstrap.Modal(document.getElementById('applyModal'), { backdrop: 'static' });
+      function openApplyModal(type, id, title) {
+        applyData = { type, id, title };
+        document.getElementById('applyModalTitle').innerHTML = '<i class="material-icons" style="color:var(--accent);">send</i> Solicitar: ' + title;
+        document.getElementById('applyMessage').value = '';
+        applyModal.show();
+      }
+      document.getElementById('applySubmitBtn').addEventListener('click', async function () {
+        const btn = this;
+        if (btn.disabled) return;
+        btn.disabled = true;
+        const msg = document.getElementById('applyMessage').value;
+        try {
+          await LW.aplicar(applyData.type, applyData.id, msg);
+          applyModal.hide();
+          document.getElementById('applyMessage').value = '';
+          swalOk('Solicitud enviada');
+          renderServicios();
+        } catch (err) {
+          swalErr(err);
+        } finally {
+          btn.disabled = false;
+        }
+      });
+
+      async function renderSolicitudesPersonal() {
+        const box = document.getElementById('solicitudesNsp');
+        try {
+          const ss = await LW.solicitudesRecibidas();
+          if (!ss.length) {
+            box.innerHTML = '<p style="color:var(--text-muted);font-size:13px;margin:0;">Sin solicitudes por ahora.</p>';
+            return;
+          }
+          const badge = { pendiente: 'warning', aceptado: 'success', rechazado: 'danger' };
+          box.innerHTML = ss.map(s =>
+            '<div style="padding:10px 0;border-bottom:1px solid var(--card-border);">' +
+              '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">' +
+                '<div>' +
+                  '<b style="font-size:14px;">' + esc(s.trabajador_nombre) + '</b> &middot; ' +
+                  '<span style="font-size:13px;">' + (s.solicitud_tipo == 'vacaciones' ? 'Vacaciones' : 'Permiso') + ' ' + s.dias + ' día' + (s.dias>1?'s':'') + '</span>' +
+                  '<span class="badge text-bg-' + (badge[s.estado] || 'secondary') + '" style="margin-left:8px;">' + s.estado + '</span>' +
+                  (s.descripcion ? '<div style="color:var(--text-muted);font-size:13px;margin-top:4px;">' + esc(s.descripcion) + '</div>' : '') +
+                  (s.imagen_url ? '<a href="' + esc(s.imagen_url) + '" target="_blank" style="font-size:12px;color:var(--accent);">Ver soporte foto</a>' : '') +
+                  (s.mensaje_respuesta ? '<div style="color:var(--accent2);font-size:12px;margin-top:4px;">Respuesta: ' + esc(s.mensaje_respuesta) + '</div>' : '') +
+                '</div>' +
+                (s.estado == 'pendiente' ?
+                  '<div style="display:flex;gap:6px;">' +
+                    '<button class="btn-listing sol-ok-btn" data-id="' + s.id + '" style="background:var(--success, #10B981);">' +
+                      '<i class="material-icons">check</i> Aceptar</button>' +
+                    '<button class="btn-listing sol-no-btn" data-id="' + s.id + '" style="background:var(--danger, #EF4444);">' +
+                      '<i class="material-icons">close</i> Rechazar</button>' +
+                  '</div>' : '') +
+              '</div>' +
+            '</div>').join('');
+          bindSolButtons();
+        } catch (err) {
+          box.innerHTML = '<p style="color:var(--accent2);font-size:13px;">' + esc(err.message) + '</p>';
+        }
+      }
+
+      function bindSolButtons() {
+        document.querySelectorAll('.sol-ok-btn').forEach(b => b.addEventListener('click', async function () {
+          const { value } = await Swal.fire({
+            icon: 'question', iconColor: '#10B981', title: 'Aceptar solicitud',
+            input: 'text', inputLabel: 'Mensaje al empleado (opcional)', inputPlaceholder: 'Ej: Aprobado, disfruta tus días',
+            showCancelButton: true, confirmButtonText: 'Aceptar', cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#10B981', cancelButtonColor: '#94A3B8', background: '#FFFFFF', color: '#1E293B', padding: '24px'
+          });
+          if (value === null) return;
+          try { await LW.responderSolicitud(this.dataset.id, { estado: 'aceptado', mensaje_respuesta: value || '' }); swalOk('Solicitud aprobada'); renderSolicitudesPersonal(); }
+          catch (err) { swalErr(err); }
+        }));
+        document.querySelectorAll('.sol-no-btn').forEach(b => b.addEventListener('click', async () => {
+          const { value } = await Swal.fire({
+            icon: 'question', iconColor: '#EF4444', title: 'Rechazar solicitud',
+            input: 'true', inputLabel: 'Motivo (opcional)', inputPlaceholder: 'Ej: no hay cobertura',
+            showCancelButton: true, confirmButtonText: 'Rechazar', cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#EF4444', cancelButtonColor: '#94A3B8', background: '#FFFFFF', color: '#1E293B', padding: '24px'
+          });
+          if (value === null) return;
+          try { await LW.responderSolicitud(this.dataset.id, { estado: 'rechazado', mensaje_respuesta: value || '' }); swalOk('Solicitud rechazada'); renderSolicitudesPersonal(); }
+          catch (err) { swalErr(err); }
+        }));
+      }
+
+      // ========== CHAT ==========
+      function openChatTab(tipo, refId, titulo, ownerEmail, ownerName) {
+        currentChat.tipo = tipo || null;
+        currentChat.refId = refId || null;
+        currentChat.otroEmail = ownerEmail || null;
+        currentChat.otroNombre = ownerName || null;
+        currentChat.otroId = null;
+        document.querySelectorAll('.dd-section-trigger').forEach(a => a.classList.remove('nav-active'));
+        document.querySelectorAll('.section-content').forEach(s => s.style.display = 'none');
+        document.getElementById('sec-chat').style.display = 'block';
+        renderCurrentSection = 'chat';
+        loadConversation(currentChat.otroEmail, currentChat.otroId, currentChat.otroNombre);
+      }
+
+      async function renderMisEmpleadosChat() {
+        const container = document.getElementById('misEmpleadosList');
+        try {
+          const contratos = await LW.misContratos();
+          const empleados = contratos.filter(c => c.empleador_email === user.email && c.estado === 'activo' && c.tipo === 'empleo');
+          if (empleados.length === 0) {
+            container.innerHTML = '<p style="color:var(--text-muted);font-size:13px;margin:0;">Aún no tienes empleados activos.</p>';
+            return;
+          }
+          container.innerHTML = '<div class="list-group conv-list" style="margin:0;">' +
+            empleados.map(c => {
+              return '<div class="list-group-item conv-item" data-otro="' + esc(c.trabajador_nombre) + '" data-otroid="" data-otroemail="' + esc(c.trabajador_email) + '">' +
+                '<span class="conv-avatar" style="background:linear-gradient(135deg,var(--accent),var(--accent-light));"><i class="material-icons">person</i></span>' +
+                '<div class="conv-info">' +
+                  '<div class="conv-title">' + esc(c.trabajador_nombre) + '</div>' +
+                  '<div class="conv-sub">' + (c.ref_titulo ? esc(c.ref_titulo) + ' · ' : '') + '<span class="status-badge activo" style="font-size:10px;padding:1px 6px;">Activo</span></div>' +
+                '</div>' +
+                '<button type="button" class="perfil-mini-btn" data-email="' + esc(c.trabajador_email || '') + '" style="border:1px solid var(--card-border);background:#fff;border-radius:8px;padding:4px 8px;font-size:12px;color:#6366F1;cursor:pointer;" title="Ver perfil"><i class="material-icons" style="font-size:14px;">person</i></button>' +
+              '</div>';
+            }).join('') +
+          '</div>';
+          container.querySelectorAll('.conv-item').forEach(item => {
+            item.addEventListener('click', function () {
+              currentChat.otroNombre = this.dataset.otro;
+              currentChat.otroId = this.dataset.otroid || null;
+              currentChat.otroEmail = this.dataset.otroemail;
+              currentChat.tipo = null;
+              currentChat.refId = null;
+              loadConversation(currentChat.otroEmail, currentChat.otroId, currentChat.otroNombre);
+            });
+          });
+          document.querySelectorAll('#misEmpleadosList .perfil-mini-btn').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+              e.stopPropagation();
+              openPerfilPublico(this.dataset.email);
+            });
+          });
+        } catch (_) {
+          container.innerHTML = '<p style="color:var(--text-muted);font-size:13px;margin:0;">No se pudo cargar.</p>';
+        }
+      }
+
+      async function renderConversaciones() {
+        renderMisEmpleadosChat();
+        const container = document.getElementById('conversationsList');
+        container.style.display = 'block';
+        document.getElementById('chatThread').style.display = 'none';
+        try {
+          const convs = await LW.conversaciones();
+          if (convs.length === 0) {
+            container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">chat</i><h5>Sin conversaciones</h5><p>No tienes mensajes aún. Inicia contacto desde un empleo o servicio.</p></div>';
+            return;
+          }
+          container.innerHTML = '<div class="list-group conv-list" style="margin:0;">' +
+            convs.map(c => {
+              return '<div class="list-group-item conv-item" data-tipo="' + c.tipo + '" data-refid="' + c.ref_id + '" data-otro="' + esc(c.otro_nombre) + '" data-otroid="' + (c.otro_id || '') + '" data-otroemail="' + esc(c.otro_email || '') + '">' +
+                '<span class="conv-avatar" style="background:' + (c.tipo === 'servicio' ? 'linear-gradient(135deg,var(--success),#34D399)' : 'linear-gradient(135deg,var(--accent),var(--accent-light))') + ';"><i class="material-icons">' + (c.tipo === 'servicio' ? 'build' : 'work') + '</i></span>' +
+                '<div class="conv-info">' +
+                  '<div class="conv-title">' + esc(c.otro_nombre) + '</div>' +
+                  '<div class="conv-sub">' +
+                    '<span class="status-badge ' + (c.tipo === 'servicio' ? 'services' : 'jobs') + '" style="font-size:10px;padding:1px 6px;color:white;border:none;">' + (c.tipo === 'servicio' ? 'Servicio' : 'Empleo') + '</span> ' +
+                    (c.ref_titulo ? esc(c.ref_titulo) + '<br>' : '') +
+                    (c.last_message ? esc(c.last_message.substring(0, 60)) + (c.last_message.length > 60 ? '...' : '') : '') +
+                  '</div>' +
+                '</div>' +
+                (c.unread > 0 ? '<span class="conv-unread">' + c.unread + '</span>' : '') +
+              '</div>';
+            }).join('') +
+          '</div>';
+          document.querySelectorAll('.conv-item').forEach(item => {
+            item.addEventListener('click', function () {
+              currentChat.otroNombre = this.dataset.otro;
+              currentChat.otroId = this.dataset.otroid;
+              currentChat.otroEmail = this.dataset.otroemail;
+              loadConversation(currentChat.otroEmail, currentChat.otroId, currentChat.otroNombre);
+            });
+          });
+        } catch (err) {
+          container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">error</i><h5>Error al cargar</h5><p>' + esc(err.message) + '</p></div>';
+        }
+      }
+
+      async function loadConversation(otroEmail, otroId, otroNombre) {
+        if (otroEmail !== undefined) currentChat.otroEmail = otroEmail;
+        if (otroId !== undefined) currentChat.otroId = otroId;
+        if (otroNombre !== undefined) currentChat.otroNombre = otroNombre;
+        document.getElementById('conversationsList').style.display = 'none';
+        document.getElementById('chatThread').style.display = 'block';
+        document.getElementById('chatThreadTitle').textContent = currentChat.otroNombre || 'Chat';
+        const msgsContainer = document.getElementById('chatMessages');
+        msgsContainer.innerHTML = '<div style="text-align:center;color:var(--text-muted);padding:20px;"><i class="material-icons">hourglass_empty</i> Cargando mensajes...</div>';
+        try {
+          const msgs = await LW.conversacion(currentChat.otroId, currentChat.otroEmail, currentChat.otroNombre);
+          if (msgs.length === 0) {
+            msgsContainer.innerHTML = '<div style="text-align:center;color:var(--text-muted);padding:20px;">No hay mensajes aún. Envía el primero.</div>';
+          } else {
+            msgsContainer.innerHTML = msgs.map(m => {
+              const isMine = m.es_mio || m.remitente_id === user.id;
+              return '<div class="chat-msg ' + (isMine ? 'mine' : 'theirs') + '">' +
+                (m.remitente ? '<div class="msg-author">' + esc(m.remitente) + '</div>' : '') +
+                '<div>' + esc(m.mensaje) + '</div>' +
+                (m.created_at ? '<div class="msg-time">' + m.created_at + '</div>' : '') +
+              '</div>';
+            }).join('');
+            msgsContainer.scrollTop = msgsContainer.scrollHeight;
+          }
+        } catch (err) {
+          msgsContainer.innerHTML = '<div style="text-align:center;color:var(--accent2);padding:20px;">Error: ' + esc(err.message) + '</div>';
+        }
+      }
+
+      renderMisEmpleos();
+    });
+  </script>
+</body>
+</html>

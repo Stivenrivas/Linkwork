@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkWork - Bienvenido</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20260822d">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+</head>
+<body class="intro-page">
+  <header class="top">
+    <div class="logo"><span class="logo-mark">LW</span>LinkWork <span style="font-weight:400;color:var(--text-muted);font-size:13px;margin-left:6px;">1.0</span></div>
+    <div class="top-actions">
+      <button class="icon-btn" id="temaBtn" title="Cambiar tema"><i class="material-icons">dark_mode</i></button>
+      <button class="cta-btn" onclick="irLogin()">Entrar <i class="material-icons">arrow_forward</i></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="hero-badge"><i class="material-icons" style="font-size:15px;">bolt</i> Empleo · Servicios · Contratos</span>
+      <h1>Conecta el talento con <em>el trabajo</em> que lo necesita.</h1>
+      <p class="lead">LinkWork une a empleadores que buscan mano de obra, personas que ofrecen su trabajo y proveedores de servicios. Publica, postula, conversa, contrata y controla tus horas — todo en un solo lugar.</p>
+      <div class="cta-row">
+        <button class="cta-btn cta-large" onclick="irLogin()">Empezar ahora <i class="material-icons">login</i></button>
+        <a class="ghost-btn" href="#que-es">Saber más <i class="material-icons">expand_more</i></a>
+      </div>
+      <div class="hero-graph" aria-hidden="true">
+        <svg viewBox="0 0 760 240">
+          <defs><marker id="punto" markerWidth="8" markerHeight="8" refX="4" refY="4"><circle cx="4" cy="4" r="3" fill="var(--accent)"/></marker></defs>
+          <!-- Triángulo exterior: los 3 perfiles conectados entre sí -->
+          <path class="dash" d="M250,90 C330,32 430,32 510,90" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"/>
+          <path class="dash" d="M250,90 C280,145 330,185 380,185" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-dasharray="7 9"/>
+          <path class="dash" d="M510,90 C480,145 430,185 380,185" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-dasharray="7 9"/>
+          <!-- Conexiones al centro LW -->
+          <path class="dash" d="M250,90 C300,95 340,95 365,95" fill="none" stroke="var(--accent-light)" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="6 8" opacity="0.9"/>
+          <path class="dash" d="M510,90 C460,95 420,95 395,95" fill="none" stroke="var(--accent-light)" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="6 8" opacity="0.9"/>
+          <path class="dash" d="M380,185 C380,155 380,125 380,110" fill="none" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="6 8" opacity="0.9"/>
+          <g class="node"><circle cx="250" cy="90" r="13" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="3"/><text x="250" y="53" text-anchor="middle" class="nlabel">Empleador</text></g>
+          <g class="node"><circle cx="510" cy="90" r="13" fill="var(--card-bg)" stroke="var(--success)" stroke-width="3"/><text x="510" y="53" text-anchor="middle" class="nlabel">Usuario</text></g>
+          <g class="node"><circle cx="380" cy="185" r="13" fill="var(--card-bg)" stroke="#8B5CF6" stroke-width="3"/><text x="380" y="215" text-anchor="middle" class="nlabel">Proveedor</text></g>
+          <g class="node"><circle cx="380" cy="95" r="15" fill="var(--card-bg)" stroke="var(--accent)" stroke-width="3"/><title>LinkWork</title></g>
+          <text x="380" y="100" text-anchor="middle" font-size="12" font-weight="800" fill="var(--text)">LW</text>
+        </svg>
+      </div>
+      <div class="hero-stats">
+        <div><b><i class="material-icons">group</i>3</b><span>perfiles integrados</span></div>
+        <div><b><i class="material-icons">schedule</i>56h</b><span>máximo semanal regulado</span></div>
+        <div><b><i class="material-icons">receipt_long</i>100%</b><span>recibos automáticos</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="intro-footer">
+    <b>LinkWork</b> · El puente entre el talento y el trabajo — versión 1.0<br>
+    Empleo, servicios, contratos y recibos en una sola plataforma.
+  </footer>
+
+  <script>
+    function irLogin() { window.location.href = 'index.html'; }
+    (function(){
+      var tema = localStorage.getItem('lw_tema') || 'claro';
+      document.documentElement.setAttribute('data-theme', tema === 'oscuro' ? 'dark' : 'claro');
+      var temaBtn = document.getElementById('temaBtn');
+      function pintarTema() { if(!temaBtn) return; temaBtn.innerHTML = '<i class="material-icons">' + (tema === 'oscuro' ? 'light_mode' : 'dark_mode') + '</i>'; }
+      pintarTema();
+      if(temaBtn) temaBtn.addEventListener('click', function() {
+        tema = (tema === 'oscuro' ? 'claro' : 'oscuro');
+        localStorage.setItem('lw_tema', tema);
+        document.documentElement.setAttribute('data-theme', tema === 'oscuro' ? 'dark' : 'claro');
+        pintarTema();
+      });
+    })();
+  </script>
+</body>
+</html>

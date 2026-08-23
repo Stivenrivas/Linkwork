@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script>try{var t=localStorage.getItem("lw_tema")||"claro";var d=t==="oscuro"||(t==="auto"&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(d)document.documentElement.setAttribute("data-theme","dark");}catch(e){}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkWork - Proveedor</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css?v=20260811c">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      <a href="#" class="navbar-brand brand-logo">
+        <span class="logo-icon">LW</span>
+        <span class="logo-text">LinkWork</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobile-nav" aria-controls="mobile-nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a href="#!" class="nav-link nav-active dd-section-trigger" data-section="publicar"><i class="material-icons">add_circle</i>Publicar</a></li>
+          <li class="nav-item"><a href="#!" class="nav-link dd-section-trigger" data-section="servicios"><i class="material-icons">list_alt</i>Mis Servicios</a></li>
+          <li class="nav-item"><a href="#!" class="nav-link dd-section-trigger" data-section="solicitantes"><i class="material-icons">people</i>Solicitantes</a></li>
+          <li class="nav-item"><a href="#!" class="nav-link dd-section-trigger" data-section="empleos"><i class="material-icons">work</i>Empleos</a></li>
+<li class="nav-item"><a href="#!" class="nav-link dd-section-trigger" data-section="ingresos"><i class="material-icons">account_balance</i>Ingresos</a></li>
+         <li class="nav-item"><a href="#!" class="nav-link dd-section-trigger" data-section="chat"><i class="material-icons">chat</i>Chat</a></li>
+          <li class="nav-item"><a href="#!" class="nav-link dd-section-trigger" data-section="frecuentes"><i class="material-icons">star</i>Frecuentes</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#!" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="material-icons">person</i>
+              <span class="username-text" id="navUsername">Usuario</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end user-dropdown" id="user-menu" aria-labelledby="userDropdown">
+              <li class="dropdown-user-header">
+                <div class="dropdown-avatar" id="ddAvatar">LW</div>
+                <div class="dropdown-user-info">
+                  <strong id="ddName">Usuario</strong>
+                  <span id="ddEmail">email</span>
+                  <span class="dropdown-role-badge" id="ddRole">proveedor</span>
+                </div>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#!" id="perfilItem"><i class="material-icons">account_circle</i>Mi Perfil</a></li>
+              <li><a class="dropdown-item" href="#!" id="configItem"><i class="material-icons">settings</i>Configuración</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="material-icons">exit_to_app</i>Cerrar Sesión</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="mobile-nav" aria-labelledby="mobile-nav-label">
+    <div class="offcanvas-header">
+      <span class="sidenav-header" id="mobile-nav-label">
+        <span class="logo-icon" style="width:32px;height:32px;background:linear-gradient(135deg,var(--accent),var(--accent-light));border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:white;">LW</span>
+        LinkWork
+      </span>
+    </div>
+    <div class="offcanvas-body">
+      <a href="#!" class="off-link nav-active dd-section-trigger" data-section="publicar"><i class="material-icons">add_circle</i>Publicar</a>
+      <a href="#!" class="off-link dd-section-trigger" data-section="servicios"><i class="material-icons">list_alt</i>Mis Servicios</a>
+      <a href="#!" class="off-link dd-section-trigger" data-section="solicitantes"><i class="material-icons">people</i>Solicitantes</a>
+      <a href="#!" class="off-link dd-section-trigger" data-section="empleos"><i class="material-icons">work</i>Empleos</a>
+      <a href="#!" class="off-link dd-section-trigger" data-section="ingresos"><i class="material-icons">account_balance</i>Ingresos</a>
+      <a href="#!" class="off-link dd-section-trigger" data-section="chat"><i class="material-icons">chat</i>Chat</a>
+      <a href="#!" class="off-link dd-section-trigger" data-section="frecuentes"><i class="material-icons">star</i>Frecuentes</a>
+      <div class="off-divider"></div>
+      <a href="#!" class="off-link" id="mobileLogout"><i class="material-icons">exit_to_app</i>Cerrar Sesión</a>
+    </div>
+  </div>
+
+  <main>
+    <div class="container">
+      <div class="welcome-banner">
+        <h4><i class="material-icons" style="font-size:28px;">build</i>Panel de Proveedor</h4>
+        <p>Gestiona tus servicios, solicitudes y finanzas en LinkWork</p>
+      </div>
+
+      <!-- Publicar -->
+      <div id="section-publicar" class="section-content">
+        <h4 class="section-title"><i class="material-icons">add_circle</i>Publicar Servicio</h4>
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+              <div class="card-body">
+                <form id="serviceForm">
+                  <div class="mb-3">
+                    <label class="form-label" for="sTitle"><i class="material-icons">build</i>Nombre del servicio</label>
+                    <input type="text" id="sTitle" class="form-control" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" for="sCategory"><i class="material-icons">category</i>Categoría (ej: Reparación, Limpieza)</label>
+                    <input type="text" id="sCategory" class="form-control" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" for="sPrice"><i class="material-icons">attach_money</i>Precio (opcional)</label>
+                    <input type="text" id="sPrice" class="form-control">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" for="sDescription"><i class="material-icons">description</i>Descripción del servicio</label>
+                    <textarea id="sDescription" class="form-control" required></textarea>
+                  </div>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label" for="sDuracion"><i class="material-icons">schedule</i>Duración (ej: 1 hora, 2 días)</label>
+                      <input type="text" id="sDuracion" class="form-control" placeholder="Ej: 1 hora">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="sUbicacion"><i class="material-icons">place</i>Ubicación</label>
+                      <input type="text" id="sUbicacion" class="form-control" placeholder="Barrio, ciudad">
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" for="sHorarios"><i class="material-icons">event_available</i>Horarios de atención</label>
+                    <input type="text" id="sHorarios" class="form-control" placeholder="Ej: Lunes a viernes 8am-6pm">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" for="sIncluye"><i class="material-icons">checklist</i>Qué incluye</label>
+                    <input type="text" id="sIncluye" class="form-control" placeholder="Ej: materiales, transporte, garantía">
+                  </div>
+
+                  <div class="img-upload-area" id="uploadArea">
+                    <i class="material-icons">add_photo_alternate</i>
+                    <p>Haz clic para subir una imagen</p>
+                    <img id="sImagenPreview" class="preview" style="display:none;">
+                  </div>
+                  <input type="file" id="sImagenInput" accept="image/*" style="display:none;">
+                  <input type="hidden" id="sImagen" value="">
+
+                  <button type="submit" class="btn btn-primary w-100" style="margin-top:20px;">
+                    <i class="material-icons">send</i>
+                    Publicar Servicio
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mis Servicios -->
+      <div id="section-servicios" class="section-content" style="display:none;">
+        <div class="explore-header">
+          <div>
+            <h4 class="section-title" style="margin:0;"><i class="material-icons">list_alt</i>Mis Servicios</h4>
+            <p style="color:var(--text-muted);margin:5px 0 0 0;font-size:14px;">Servicios que has publicado</p>
+          </div>
+          <span class="badge-count" id="servCount">0</span>
+        </div>
+        <div class="list-toolbar">
+          <input type="search" class="form-control" placeholder="Buscar en mis servicios..." oninput="filtrarLista('myServices', this.value)">
+          <span class="list-results" id="myServices_count"></span>
+        </div>
+        <div id="myServices"></div>
+      </div>
+
+      <!-- Solicitantes -->
+      <div id="section-solicitantes" class="section-content" style="display:none;">
+        <div class="explore-header">
+          <div>
+            <h4 class="section-title" style="margin:0;"><i class="material-icons">people</i>Solicitantes</h4>
+            <p style="color:var(--text-muted);margin:5px 0 0 0;font-size:14px;">Personas que solicitaron tus servicios</p>
+          </div>
+          <span class="badge-count" id="solCount">0</span>
+        </div>
+        <div id="solicitantesList"></div>
+      </div>
+
+      <!-- Empleos disponibles -->
+      <div id="section-empleos" class="section-content" style="display:none;">
+        <div class="explore-header">
+          <div>
+            <h4 class="section-title" style="margin:0;"><i class="material-icons">work</i>Empleos Disponibles</h4>
+            <p style="color:var(--text-muted);margin:5px 0 0 0;font-size:14px;">Ofertas laborales publicadas por los empleadores</p>
+          </div>
+          <span class="badge-count" id="provJobCount">0</span>
+        </div>
+        <div class="list-toolbar">
+          <input type="search" class="form-control" placeholder="Buscar por título, empresa o ubicación..." oninput="filtrarLista('provJobList', this.value)">
+          <label class="fav-chip"><input type="checkbox" onchange="toggleFiltroFav(this,'provJobList')">★ Destacados</label>
+          <span class="list-results" id="provJobList_count"></span>
+        </div>
+        <div id="provJobList"></div>
+      </div>
+
+      <!-- Ingresos -->
+      <div id="section-ingresos" class="section-content" style="display:none;">
+        <h4 class="section-title"><i class="material-icons">account_balance</i>Ingresos</h4>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card stat-card blue-gradient" style="margin-top:0;">
+              <div class="card-body text-center">
+                <i class="material-icons large">account_balance</i>
+                <h5 id="finTotal">$0</h5>
+                <p>Total Ingresos</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card" style="margin-top:0;">
+              <div class="card-body">
+                <div style="display:flex;align-items:flex-end;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+                  <div style="flex:1;min-width:120px;">
+                    <label class="form-label" for="finYear">Año</label>
+                    <select id="finYear" class="form-select">
+                      <option value="2024">2024</option>
+                      <option value="2025">2025</option>
+                      <option value="2026" selected>2026</option>
+                    </select>
+                  </div>
+                  <div style="flex:1;min-width:120px;">
+                    <label class="form-label" for="finMonth">Mes</label>
+                    <select id="finMonth" class="form-select">
+                      <option value="">-- Todos --</option>
+                      <option value="1">Enero</option>
+                      <option value="2">Febrero</option>
+                      <option value="3">Marzo</option>
+                      <option value="4">Abril</option>
+                      <option value="5">Mayo</option>
+                      <option value="6">Junio</option>
+                      <option value="7">Julio</option>
+                      <option value="8">Agosto</option>
+                      <option value="9">Septiembre</option>
+                      <option value="10">Octubre</option>
+                      <option value="11">Noviembre</option>
+                      <option value="12">Diciembre</option>
+                    </select>
+                  </div>
+                  <button class="btn btn-primary" id="finFilterBtn" style="height:44px;">
+                    <i class="material-icons">search</i>
+                  </button>
+                </div>
+                <div style="max-height:260px;overflow-y:auto;">
+                  <table class="finance-table" id="finTable">
+                    <thead>
+                      <tr><th>Fecha</th><th>Concepto</th><th>Categoría</th><th>Monto</th></tr>
+                    </thead>
+                    <tbody id="finTbody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:20px;">
+          <div class="card-body">
+            <h5 class="card-title" style="display:flex;align-items:center;gap:8px;">
+              <i class="material-icons">bar_chart</i> Ingresos Mensuales
+            </h5>
+            <div style="height:300px;position:relative;">
+              <canvas id="finChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Frecuentes -->
+      <div id="section-frecuentes" class="section-content" style="display:none;">
+        <div class="explore-header">
+          <div>
+            <h4 class="section-title" style="margin:0;"><i class="material-icons">star</i>Usuarios Frecuentes</h4>
+            <p style="color:var(--text-muted);margin:5px 0 0 0;font-size:14px;">Usuarios con mayor actividad en LinkWork</p>
+          </div>
+        </div>
+        <div id="frecuentesList"></div>
+      </div>
+
+      <!-- Chat -->
+      <div id="section-chat" class="section-content" style="display:none;">
+        <div class="explore-header">
+          <div>
+            <h4 class="section-title" style="margin:0;"><i class="material-icons">chat</i>Mensajes</h4>
+            <p style="color:var(--text-muted);margin:5px 0 0 0;font-size:14px;">Conversaciones con empleadores y usuarios</p>
+          </div>
+        </div>
+        <div id="chatContainer">
+          <div id="conversationsList"></div>
+          <div id="chatThread" style="display:none;">
+            <div id="chatThreadHeader" style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+              <button id="chatBackBtn" class="btn-ghost" style="padding:0 8px;"><i class="material-icons">arrow_back</i></button>
+              <h5 id="chatThreadTitle" style="margin:0;font-weight:600;font-size:16px;"></h5>
+            </div>
+            <div id="chatMessages" class="chat-box"></div>
+            <form id="chatForm" style="display:flex;gap:8px;margin-top:12px;">
+              <div style="flex:1;margin:0;">
+                <input type="text" id="chatInput" class="form-control" placeholder="Escribe un mensaje..." required>
+              </div>
+              <button type="submit" class="btn btn-primary" style="height:44px;min-width:44px;padding:0 16px;">
+                <i class="material-icons">send</i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="../Login/js/api.js?v=20260811e"></script>
+  <script src="js/nav.js?v=20260811d"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async function () {
+      let user;
+      try { user = await LW.me(); } catch (_) { window.location.href = '../Login/index.html'; return; }
+      if (user.role !== 'proveedor') { window.location.href = '../Login/index.html'; return; }
+
+      document.getElementById('ddName').textContent = user.username;
+      document.getElementById('ddEmail').textContent = user.email;
+      document.getElementById('ddRole').textContent = user.role;
+      const initials = (user.username || 'U').substring(0, 2).toUpperCase();
+      document.getElementById('ddAvatar').textContent = initials;
+      document.getElementById('navUsername').textContent = user.username;
+
+      let currentChat = { tipo: null, refId: null, convId: null, otroNombre: null, otroEmail: null, otroId: null };
+
+      document.querySelectorAll('.dd-section-trigger').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          const section = this.dataset.section;
+          document.querySelectorAll('.dd-section-trigger').forEach(a => a.classList.remove('nav-active'));
+          this.classList.add('nav-active');
+          document.querySelectorAll('.section-content').forEach(s => s.style.display = 'none');
+          document.getElementById('section-' + section).style.display = 'block';
+          switch (section) {
+            case 'servicios': renderMisServicios(); break;
+            case 'solicitantes': renderSolicitantes(); break;
+            case 'empleos': renderEmpleos(); break;
+            case 'ingresos': renderIngresos(); renderChart(); break;
+            case 'frecuentes': renderFrecuentes(); break;
+            case 'chat': renderConversaciones(); break;
+          }
+          closeMobileNav();
+        });
+      });
+
+      function esc(str) {
+        if (!str) return '';
+        return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+
+      let renderCurrentSection = 'publicar';
+
+      // ========== PUBLICAR ==========
+      document.getElementById('uploadArea').addEventListener('click', function () {
+        document.getElementById('sImagenInput').click();
+      });
+
+      document.getElementById('sImagenInput').addEventListener('change', async function (e) {
+        const file = this.files[0];
+        if (!file) return;
+        try {
+          const res = await LW.upload(file);
+          const url = res.url || res;
+          document.getElementById('sImagenPreview').src = url;
+          document.getElementById('sImagenPreview').style.display = 'block';
+          document.getElementById('sImagen').value = url;
+        } catch (err) { swalErr(err); }
+      });
+
+      document.getElementById('serviceForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        try {
+          await LW.crearServicio({
+            title: document.getElementById('sTitle').value,
+            category: document.getElementById('sCategory').value,
+            price: document.getElementById('sPrice').value,
+            description: document.getElementById('sDescription').value,
+            imagen: document.getElementById('sImagen').value,
+            duracion: document.getElementById('sDuracion').value,
+            ubicacion: document.getElementById('sUbicacion').value,
+            horarios: document.getElementById('sHorarios').value,
+            incluye: document.getElementById('sIncluye').value
+          });
+          this.reset();
+          document.getElementById('sImagenPreview').style.display = 'none';
+          document.getElementById('sImagen').value = '';
+          swalOk('Servicio publicado');
+        } catch (err) { swalErr(err); }
+      });
+
+      // Chat event listeners
+      document.getElementById('chatForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const msg = document.getElementById('chatInput').value.trim();
+        if (!msg) return;
+        try {
+          const msgPayload = {
+            tipo_ref: currentChat.tipo || 'general',
+            ref_id: currentChat.refId || 0,
+            mensaje: msg
+          };
+          if (currentChat.otroId) {
+            msgPayload.destinatario_id = currentChat.otroId;
+            msgPayload.destinatario_nombre = currentChat.otroNombre;
+          } else if (currentChat.otroEmail) {
+            msgPayload.destinatario_email = currentChat.otroEmail;
+            msgPayload.destinatario_nombre = currentChat.otroNombre;
+          }
+          await LW.enviarMensaje(msgPayload);
+          document.getElementById('chatInput').value = '';
+          loadConversation(currentChat.otroEmail, currentChat.otroId, currentChat.otroNombre);
+        } catch (err) {
+          Swal.fire({ icon: 'error', iconColor: '#EF4444', title: 'Error', text: err.message, background: '#FFFFFF', color: '#1E293B', confirmButtonColor: '#2563EB', padding: '24px' });
+        }
+      });
+
+      document.getElementById('chatBackBtn').addEventListener('click', function () {
+        document.getElementById('chatThread').style.display = 'none';
+        document.getElementById('conversationsList').style.display = 'block';
+      });
+
+      // ========== MIS SERVICIOS ==========
+      let misServiciosData = [];
+      async function renderMisServicios() {
+        const container = document.getElementById('myServices');
+        try {
+          const servicios = await LW.misServicios();
+          misServiciosData = servicios;
+          document.getElementById('servCount').textContent = servicios.length;
+          if (servicios.length === 0) {
+            container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">miscellaneous_services</i><h5>Sin servicios</h5><p>Aún no has publicado ningún servicio.</p></div>';
+            return;
+          }
+          container.innerHTML = servicios.map((s, i) => {
+            return '<div class="listing-card">' +
+              '<div class="listing-badge services">Servicio</div>' +
+              (s.imagen ? '<div class="listing-img"><img src="' + esc(s.imagen) + '" alt="' + esc(s.title) + '"></div>' : '') +
+              '<div class="listing-content">' +
+                '<div class="listing-header">' +
+                  '<h3>' + esc(s.title) + '</h3>' +
+                  '<span class="listing-category">' + esc(s.category) + '</span>' +
+                '</div>' +
+                '<div class="listing-details">' +
+                  (s.price ? '<span><i class="material-icons">attach_money</i> $' + esc(s.price) + '</span>' : '') +
+                  (s.duracion ? '<span><i class="material-icons">schedule</i> ' + esc(s.duracion) + '</span>' : '') +
+                  (s.ubicacion ? '<span><i class="material-icons">place</i> ' + esc(s.ubicacion) + '</span>' : '') +
+                '</div>' +
+                '<p class="listing-desc">' + esc(s.description) + '</p>' +
+                ((s.horarios || s.incluye) ? '<div class="emp-chips" style="margin-top:8px;">' +
+                  (s.horarios ? '<span class="emp-chip" style="padding:3px 10px;font-size:12px;"><i class="material-icons">event_available</i>' + esc(s.horarios) + '</span>' : '') +
+                  (s.incluye ? '<span class="emp-chip" style="padding:3px 10px;font-size:12px;"><i class="material-icons">checklist</i>' + esc(s.incluye) + '</span>' : '') +
+                '</div>' : '') +
+              '</div>' +
+              '<div class="listing-action">' +
+                '<button class="btn-listing cf-serv-btn" data-i="' + i + '" style="background:var(--accent);"><i class="material-icons">tune</i> Configurar</button>' +
+                '<button class="btn-listing delete-serv-btn" data-id="' + s.id + '" style="background:var(--accent2);">Eliminar <i class="material-icons">delete</i></button>' +
+              '</div>' +
+            '</div>';
+          }).join('');
+          document.querySelectorAll('.delete-serv-btn').forEach(btn => {
+            btn.addEventListener('click', async function () {
+              const r = await Swal.fire({ icon: 'warning', iconColor: '#F59E0B', title: '¿Eliminar servicio?', text: 'Esta acción no se puede deshacer', showCancelButton: true, confirmButtonColor: '#EF4444', cancelButtonColor: '#94A3B8', confirmButtonText: 'Eliminar', cancelButtonText: 'Cancelar', background: '#FFFFFF', color: '#1E293B', padding: '24px', reverseButtons: true });
+              if (!r.isConfirmed) return;
+              try { await LW.deleteServicio(this.dataset.id); swalOk('Servicio eliminado'); renderMisServicios(); } catch (err) { swalErr(err); }
+            });
+          });
+          document.querySelectorAll('.cf-serv-btn').forEach(btn => {
+            btn.addEventListener('click', function () { abrirConfigServicio(parseInt(this.dataset.i)); });
+          });
+        } catch (err) {
+          container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">error</i><h5>Error</h5><p>' + esc(err.message) + '</p></div>';
+        }
+      }
+
+      async function abrirConfigServicio(i) {
+        const s = misServiciosData[i];
+        if (!s) return;
+        const { value } = await Swal.fire({
+          title: 'Configurar servicio',
+          html:
+            '<input id="cfPrecio" class="swal2-input" placeholder="Precio" value="' + esc(s.price || '') + '">' +
+            '<textarea id="cfDesc" class="swal2-textarea" placeholder="Descripción" rows="3">' + esc(s.description || '') + '</textarea>' +
+            '<input id="cfHorarios" class="swal2-input" placeholder="Horarios de atención" value="' + esc(s.horarios || '') + '">' +
+            '<input id="cfUbicacion" class="swal2-input" placeholder="Ubicación" value="' + esc(s.ubicacion || '') + '">' +
+            '<input id="cfDuracion" class="swal2-input" placeholder="Duración" value="' + esc(s.duracion || '') + '">' +
+            '<input id="cfIncluye" class="swal2-input" placeholder="Qué incluye" value="' + esc(s.incluye || '') + '">',
+          showCancelButton: true, confirmButtonText: 'Guardar', cancelButtonText: 'Cancelar', confirmButtonColor: '#2563EB', cancelButtonColor: '#94A3B8',
+          background: '#FFFFFF', color: '#1E293B', padding: '24px', reverseButtons: true, focusConfirm: false,
+          preConfirm: () => {
+            const g = Swal.getPopup();
+            return {
+              precio: g.querySelector('#cfPrecio').value,
+              desc: g.querySelector('#cfDesc').value,
+              horarios: g.querySelector('#cfHorarios').value,
+              ubicacion: g.querySelector('#cfUbicacion').value,
+              duracion: g.querySelector('#cfDuracion').value,
+              incluye: g.querySelector('#cfIncluye').value
+            };
+          }
+        });
+        if (!value) return;
+        try {
+          await LW.editarServicio(s.id, {
+            title: s.title,
+            category: s.category,
+            price: value.precio,
+            description: value.desc || s.description,
+            imagen: s.imagen,
+            horarios: value.horarios,
+            ubicacion: value.ubicacion,
+            duracion: value.duracion,
+            incluye: value.incluye
+          });
+          swalOk('Servicio configurado');
+          renderMisServicios();
+        } catch (err) { swalErr(err); }
+      }
+
+      // ========== SOLICITANTES ==========
+      async function renderSolicitantes() {
+        const container = document.getElementById('solicitantesList');
+        try {
+          const apps = await LW.aplicacionesRecibidas();
+          const servicios = apps.filter(a => a.tipo === 'servicio' && a.status === 'pendiente');
+          document.getElementById('solCount').textContent = servicios.length;
+          if (servicios.length === 0) {
+            container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">people</i><h5>Sin solicitantes</h5><p>No hay solicitudes para tus servicios aún.</p></div>';
+            return;
+          }
+          container.innerHTML = servicios.map(a => {
+            return '<div class="listing-card">' +
+              '<div class="listing-badge services">Solicitud</div>' +
+              '<div class="listing-content">' +
+                '<div class="listing-header">' +
+                  '<h3>' + esc(a.solicitante_nombre || 'Usuario') + '</h3>' +
+                  '<span class="listing-category">' + esc(a.ref_titulo || '') + '</span>' +
+                '</div>' +
+                (a.mensaje ? '<p class="listing-desc" style="-webkit-line-clamp:3;"><strong>Mensaje:</strong> ' + esc(a.mensaje) + '</p>' : '') +
+              '</div>' +
+              '<div class="listing-action">' +
+                '<button class="btn-listing chat-sol-btn" data-id="' + a.id + '" data-tipo="' + a.tipo + '" data-refid="' + a.ref_id + '" data-reftitulo="' + esc(a.ref_titulo || '') + '" data-email="' + esc(a.solicitante_email || '') + '" data-username="' + esc(a.solicitante_nombre || '') + '" style="background:var(--accent);">Chat <i class="material-icons">chat</i></button>' +
+                '<button class="btn-listing accept-sol-btn" data-id="' + a.id + '" data-userid="' + (a.solicitante_id || '') + '" data-username="' + esc(a.solicitante_nombre || '') + '" data-email="' + esc(a.solicitante_email || '') + '" data-refid="' + a.ref_id + '" data-reftitulo="' + esc(a.ref_titulo || '') + '" style="background:var(--success);">Aceptar <i class="material-icons">check</i></button>' +
+                '<button class="btn-listing perfil-btn" data-email="' + esc(a.solicitante_email || '') + '" style="background:#6366F1;">Perfil <i class="material-icons">person</i></button>' +
+                '<button class="btn-listing reject-sol-btn" data-id="' + a.id + '" style="background:var(--accent2);">Rechazar <i class="material-icons">close</i></button>' +
+              '</div>' +
+            '</div>';
+          }).join();
+
+          document.querySelectorAll('.accept-sol-btn').forEach(btn => {
+            btn.addEventListener('click', async function () {
+              const { value: monto } = await Swal.fire({
+                title: 'Aceptar solicitud',
+                text: 'Ingresa el monto acordado para el contrato',
+                input: 'number',
+                inputPlaceholder: 'Monto',
+                inputAttributes: { step: '0.01' },
+                showCancelButton: true,
+                confirmButtonColor: '#10B981',
+                cancelButtonColor: '#94A3B8',
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar',
+                background: '#FFFFFF',
+                color: '#1E293B',
+                padding: '24px',
+                reverseButtons: true
+              });
+              if (monto === undefined) return;
+              if (!monto || parseFloat(monto) <= 0) { swalErr('Ingresa un monto válido'); return; }
+              try {
+                await LW.cambiarEstadoAplicacion(this.dataset.id, 'aceptado');
+                await LW.crearContrato({
+                  trabajador_id: this.dataset.userid,
+                  trabajador_nombre: this.dataset.username,
+                  trabajador_email: this.dataset.email,
+                  tipo: 'servicio',
+                  ref_id: this.dataset.refid,
+                  ref_titulo: this.dataset.reftitulo,
+                  monto: parseFloat(monto)
+                });
+                await LW.crearFinanza({
+                  tipo: 'ingreso',
+                  categoria: 'servicio',
+                  concepto: this.dataset.reftitulo || 'Servicio realizado',
+                  monto: parseFloat(monto)
+                });
+                swalOk('Solicitud aceptada');
+                renderSolicitantes();
+              } catch (err) { swalErr(err); }
+            });
+          });
+
+          document.querySelectorAll('.perfil-btn').forEach(btn => {
+            btn.addEventListener('click', function () { openPerfilPublico(this.dataset.email); });
+          });
+          document.querySelectorAll('.reject-sol-btn').forEach(btn => {
+            btn.addEventListener('click', async function () {
+              const r = await Swal.fire({ icon: 'warning', iconColor: '#F59E0B', title: '¿Rechazar solicitud?', showCancelButton: true, confirmButtonColor: '#EF4444', cancelButtonColor: '#94A3B8', confirmButtonText: 'Rechazar', cancelButtonText: 'Cancelar', background: '#FFFFFF', color: '#1E293B', padding: '24px', reverseButtons: true });
+              if (!r.isConfirmed) return;
+              try { await LW.cambiarEstadoAplicacion(this.dataset.id, 'rechazado'); swalOk('Solicitud rechazada'); renderSolicitantes(); } catch (err) { swalErr(err); }
+            });
+          });
+
+          document.querySelectorAll('.chat-sol-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+              openChatTab('servicio', this.dataset.refid, this.dataset.reftitulo, this.dataset.email, this.dataset.username);
+            });
+          });
+        } catch (err) {
+          container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">error</i><h5>Error</h5><p>' + esc(err.message) + '</p></div>';
+        }
+      }
+
+      // ========== EMPLEOS DISPONIBLES ==========
+      async function renderEmpleos() {
+        const container = document.getElementById('provJobList');
+        try {
+          const empleos = (await LW.getEmpleos()).filter(j => (j.cupos_ocupados || 0) < (j.cupos || 1));
+          document.getElementById('provJobCount').textContent = empleos.length;
+          if (empleos.length === 0) {
+            container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">work_off</i><h5>Sin empleos</h5><p>No hay ofertas laborales publicadas aún.</p></div>';
+            return;
+          }
+          container.innerHTML = empleos.map(j => {
+            const isHourly = j.tipo === 'hora';
+            const restantes = (j.cupos || 1) - (j.cupos_ocupados || 0);
+            return '<div class="listing-card" data-fav="' + (esFav('empleo', j.id) ? 1 : 0) + '">' +
+              '<div class="listing-badge jobs">Empleo</div>' +
+              (j.imagen ? '<div class="listing-img"><img src="' + esc(j.imagen) + '" alt="' + esc(j.title) + '"></div>' : '') +
+              '<div class="listing-content">' +
+                '<div class="listing-header">' +
+                  '<h3>' + esc(j.title) + '</h3>' +
+                  '<span class="listing-company">' + esc(j.company) + '</span>' +
+                '</div>' +
+                '<div class="listing-details">' +
+                  '<span><i class="material-icons">location_on</i> ' + esc(j.location) + '</span>' +
+                  (j.salary ? '<span><i class="material-icons">attach_money</i> $' + esc(j.salary) + '</span>' : '') +
+                  (j.tipo ? '<span class="status-badge ' + (isHourly ? 'pendiente' : 'aceptado') + '">' + (isHourly ? 'Por Hora' : 'Fijo') + '</span>' : '') +
+                  (j.formalidad ? '<span class="status-badge ' + (j.formalidad === 'formal' ? 'aceptado' : 'pendiente') + '">' + (j.formalidad === 'formal' ? 'Formal' : 'Informal') + '</span>' : '') +
+                  (isHourly && j.horas ? '<span><i class="material-icons">schedule</i> ' + j.horas + 'h/sem</span>' : '') +
+                  (restantes > 0 ? '<span><i class="material-icons">groups</i> ' + restantes + ' cupos</span>' : '') +
+                '</div>' +
+                '<p class="listing-desc">' + esc(j.description) + '</p>' +
+              '</div>' +
+              '<div class="listing-action">' +
+                '<button class="fav-btn" onclick="toggleFav(this,\'empleo\',' + j.id + ')"></button>' +
+                (j.email === user.email ? '<span class="badge text-bg-secondary" style="font-size:11px;">Tu oferta</span>' :
+                '<button class="btn-listing-sm chat-job-btn" data-type="empleo" data-id="' + j.id + '" data-title="' + esc(j.title) + '" data-email="' + esc(j.email) + '" data-ownername="' + esc(j.employer || '') + '"><i class="material-icons" style="font-size:14px;">chat</i> Contactar</button>' +
+                '<button class="btn-listing-sm perfil-btn" data-email="' + esc(j.email) + '"><i class="material-icons" style="font-size:14px;">person</i> Perfil</button>') +
+              '</div>' +
+            '</div>';
+          }).join('');
+          document.querySelectorAll('#provJobList .fav-btn').forEach(b => {
+            b.dataset.tipo = 'empleo';
+            b.dataset.refid = b.closest('.listing-card').querySelector('.chat-job-btn').dataset.id;
+            refrescarFavBtn(b, 'empleo', parseInt(b.dataset.refid));
+          });
+          document.querySelectorAll('#provJobList .chat-job-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+              openChatTab(this.dataset.type, this.dataset.id, this.dataset.title, this.dataset.email, this.dataset.ownername);
+            });
+          });
+        } catch (err) {
+          container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">error</i><h5>Error</h5><p>' + esc(err.message) + '</p></div>';
+        }
+      }
+
+      // ========== INGRESOS ==========
+      let finChart = null;
+      async function renderIngresos(year, month) {
+        const y = year || document.getElementById('finYear').value;
+        const m = month || document.getElementById('finMonth').value;
+        try {
+          const resumen = await LW.resumenFinanzas(y, m);
+          document.getElementById('finTotal').textContent = '$' + Number(resumen.total || resumen.ingresos || 0).toLocaleString('es-CO');
+        } catch (_) {}
+
+        try {
+          const finanzas = await LW.getFinanzas(y, m);
+          const tbody = document.getElementById('finTbody');
+          if (!finanzas.length) {
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:20px;">Sin registros</td></tr>';
+          } else {
+            tbody.innerHTML = finanzas.map(f => {
+              const tipo = f.tipo === 'ingreso' ? 'ingreso' : 'egreso';
+              return '<tr>' +
+                '<td>' + esc(f.fecha || '') + '</td>' +
+                '<td>' + esc(f.concepto || '') + '</td>' +
+                '<td>' + esc(f.categoria || '') + '</td>' +
+                '<td class="' + tipo + '">' + (f.tipo === 'egreso' ? '- ' : '+ ') + '$' + esc(f.monto || 0) + '</td>' +
+              '</tr>';
+            }).join('');
+          }
+        } catch (_) {}
+      }
+
+      async function renderChart() {
+        try {
+          const meses = await LW.finanzasMensual();
+          const labels = meses.map(mm => mm.etiqueta);
+          const ingresos = meses.map(mm => mm.ingresos);
+          if (finChart) finChart.destroy();
+          const ctx = document.getElementById('finChart').getContext('2d');
+          finChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: labels,
+              datasets: [
+                { label: 'Ingresos', data: ingresos, backgroundColor: 'rgba(40,167,69,0.7)', borderColor: '#28a745', borderWidth: 1 }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: { y: { beginAtZero: true } },
+              plugins: { legend: { position: 'top' } }
+            }
+          });
+        } catch (_) {}
+      }
+
+      document.getElementById('finFilterBtn').addEventListener('click', function () {
+        renderIngresos();
+      });
+
+      // ========== FRECUENTES ==========
+      async function renderFrecuentes() {
+        const container = document.getElementById('frecuentesList');
+        try {
+          const frecuentes = await LW.frecuentes();
+
+          if (frecuentes.length === 0) {
+            container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">star</i><h5>Sin datos</h5><p>Aún no hay usuarios con actividad frecuente.</p></div>';
+            return;
+          }
+          container.innerHTML = frecuentes.map((u, i) => {
+            const rank = i + 1;
+            const isTop3 = rank <= 3;
+            const medal = rank === 1 ? 'star' : rank === 2 ? 'star_half' : rank === 3 ? 'star_border' : '';
+            return '<div class="user-row">' +
+              '<div class="user-info">' +
+                '<div style="width:36px;height:36px;border-radius:50%;background:' + (isTop3 ? 'linear-gradient(135deg,#F59E0B,#FBBF24)' : '#F1F5F9') + ';display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:' + (isTop3 ? 'white' : 'var(--text-muted)') + ';">#' + rank + '</div>' +
+                '<div>' +
+                  '<strong>' + esc(u.username) + '</strong>' +
+                  '<span style="color:var(--text-muted);font-size:12px;">' + esc(u.email) + '</span>' +
+                '</div>' +
+              '</div>' +
+              '<div class="user-meta">' +
+                (isTop3 ? '<i class="material-icons" style="color:#F59E0B;font-size:22px;">' + medal + '</i>' : '') +
+                '<span class="status-badge aceptado"><i class="material-icons" style="font-size:14px;vertical-align:middle;">flash_on</i> ' + (u.frecuencia || 0) + '</span>' +
+              '</div>' +
+            '</div>';
+          }).join('');
+        } catch (err) {
+          container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">error</i><h5>Error</h5><p>' + esc(err.message) + '</p></div>';
+        }
+      }
+
+      // ========== CHAT ==========
+      function openChatTab(tipo, refId, titulo, ownerEmail, ownerName) {
+        currentChat.tipo = tipo || null;
+        currentChat.refId = refId || null;
+        currentChat.otroEmail = ownerEmail || null;
+        currentChat.otroNombre = ownerName || null;
+        currentChat.otroId = null;
+        document.querySelectorAll('.dd-section-trigger').forEach(a => a.classList.remove('nav-active'));
+        document.querySelectorAll('.section-content').forEach(s => s.style.display = 'none');
+        document.getElementById('section-chat').style.display = 'block';
+        renderCurrentSection = 'chat';
+        loadConversation(currentChat.otroEmail, currentChat.otroId, currentChat.otroNombre);
+      }
+
+      async function renderConversaciones() {
+        const container = document.getElementById('conversationsList');
+        container.style.display = 'block';
+        document.getElementById('chatThread').style.display = 'none';
+        try {
+          const convs = await LW.conversaciones();
+          if (convs.length === 0) {
+            container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">chat</i><h5>Sin conversaciones</h5><p>No tienes mensajes aún. Inicia contacto desde un empleo o servicio.</p></div>';
+            return;
+          }
+          container.innerHTML = '<div class="list-group conv-list" style="margin:0;">' +
+            convs.map(c => {
+              return '<div class="list-group-item conv-item" data-tipo="' + c.tipo + '" data-refid="' + c.ref_id + '" data-otro="' + esc(c.otro_nombre) + '" data-otroid="' + (c.otro_id || '') + '" data-otroemail="' + esc(c.otro_email || '') + '">' +
+                '<span class="conv-avatar" style="background:' + (c.tipo === 'servicio' ? 'linear-gradient(135deg,var(--success),#34D399)' : 'linear-gradient(135deg,var(--accent),var(--accent-light))') + ';"><i class="material-icons">' + (c.tipo === 'servicio' ? 'build' : 'work') + '</i></span>' +
+                '<div class="conv-info">' +
+                  '<div class="conv-title">' + esc(c.otro_nombre) + '</div>' +
+                  '<div class="conv-sub">' +
+                    '<span class="status-badge ' + (c.tipo === 'servicio' ? 'services' : 'jobs') + '" style="font-size:10px;padding:1px 6px;color:white;border:none;">' + (c.tipo === 'servicio' ? 'Servicio' : 'Empleo') + '</span> ' +
+                    (c.ref_titulo ? esc(c.ref_titulo) + '<br>' : '') +
+                    (c.last_message ? esc(c.last_message.substring(0, 60)) + (c.last_message.length > 60 ? '...' : '') : '') +
+                  '</div>' +
+                '</div>' +
+                (c.unread > 0 ? '<span class="conv-unread">' + c.unread + '</span>' : '') +
+              '</div>';
+            }).join('') +
+          '</div>';
+          document.querySelectorAll('.conv-item').forEach(item => {
+            item.addEventListener('click', function () {
+              currentChat.otroNombre = this.dataset.otro;
+              currentChat.otroId = this.dataset.otroid;
+              currentChat.otroEmail = this.dataset.otroemail;
+              loadConversation(currentChat.otroEmail, currentChat.otroId, currentChat.otroNombre);
+            });
+          });
+        } catch (err) {
+          container.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">error</i><h5>Error al cargar</h5><p>' + esc(err.message) + '</p></div>';
+        }
+      }
+
+      async function loadConversation(otroEmail, otroId, otroNombre) {
+        if (otroEmail !== undefined) currentChat.otroEmail = otroEmail;
+        if (otroId !== undefined) currentChat.otroId = otroId;
+        if (otroNombre !== undefined) currentChat.otroNombre = otroNombre;
+        document.getElementById('conversationsList').style.display = 'none';
+        document.getElementById('chatThread').style.display = 'block';
+        document.getElementById('chatThreadTitle').textContent = currentChat.otroNombre || 'Chat';
+        const msgsContainer = document.getElementById('chatMessages');
+        msgsContainer.innerHTML = '<div style="text-align:center;color:var(--text-muted);padding:20px;"><i class="material-icons">hourglass_empty</i> Cargando mensajes...</div>';
+        try {
+          const msgs = await LW.conversacion(currentChat.otroId, currentChat.otroEmail, currentChat.otroNombre);
+          if (msgs.length === 0) {
+            msgsContainer.innerHTML = '<div style="text-align:center;color:var(--text-muted);padding:20px;">No hay mensajes aún. Envía el primero.</div>';
+          } else {
+            msgsContainer.innerHTML = msgs.map(m => {
+              const isMine = m.es_mio || m.remitente_id === user.id;
+              return '<div class="chat-msg ' + (isMine ? 'mine' : 'theirs') + '">' +
+                (m.remitente ? '<div class="msg-author">' + esc(m.remitente) + '</div>' : '') +
+                '<div>' + esc(m.mensaje) + '</div>' +
+                (m.created_at ? '<div class="msg-time">' + m.created_at + '</div>' : '') +
+              '</div>';
+            }).join('');
+            msgsContainer.scrollTop = msgsContainer.scrollHeight;
+          }
+        } catch (err) {
+          msgsContainer.innerHTML = '<div style="text-align:center;color:var(--accent2);padding:20px;">Error: ' + esc(err.message) + '</div>';
+        }
+      }
+
+      // Initial render
+      await loadFavs();
+      renderMisServicios();
+    });
+  </script>
+</body>
+</html>

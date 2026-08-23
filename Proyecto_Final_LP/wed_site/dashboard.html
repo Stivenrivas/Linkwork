@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script>try{var t=localStorage.getItem("lw_tema")||"claro";var d=t==="oscuro"||(t==="auto"&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(d)document.documentElement.setAttribute("data-theme","dark");}catch(e){}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkWork - Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css?v=20260811c">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container-fluid">
+    <a href="#" class="navbar-brand brand-logo">
+      <span class="logo-icon">LW</span>
+      <span class="logo-text">LinkWork</span>
+      <span class="admin-badge">Admin</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobile-nav" aria-controls="mobile-nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a href="#!" class="nav-link nav-active dd-section-trigger" data-section="general"><i class="material-icons">dashboard</i>General</a></li>
+        <li class="nav-item"><a href="#!" class="nav-link dd-section-trigger" data-section="usuarios"><i class="material-icons">people</i>Usuarios</a></li>
+        <li class="nav-item"><a href="#!" class="nav-link dd-section-trigger" data-section="empleos"><i class="material-icons">work</i>Empleos</a></li>
+        <li class="nav-item"><a href="#!" class="nav-link dd-section-trigger" data-section="servicios"><i class="material-icons">build</i>Servicios</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#!" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="material-icons">admin_panel_settings</i>
+            <span class="username-text" id="navUsername">Admin</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end user-dropdown" id="user-menu" aria-labelledby="userDropdown">
+            <li class="dropdown-user-header">
+              <div class="dropdown-avatar" id="ddAvatar">LW</div>
+              <div class="dropdown-user-info">
+                <strong id="ddName">Usuario</strong>
+                <span id="ddEmail">email</span>
+                <span class="dropdown-role-badge" id="ddRole">admin</span>
+              </div>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#!" id="perfilItem"><i class="material-icons">account_circle</i>Mi Perfil</a></li>
+            <li><a class="dropdown-item" href="#!" id="configItem"><i class="material-icons">settings</i>Configuración</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="material-icons">exit_to_app</i>Cerrar Sesión</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobile-nav" aria-labelledby="mobile-nav-label">
+  <div class="offcanvas-header">
+    <span class="sidenav-header" id="mobile-nav-label">
+      <span class="logo-icon" style="width:32px;height:32px;background:linear-gradient(135deg,var(--accent),var(--accent-light));border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:white;">LW</span>
+      LinkWork
+    </span>
+  </div>
+  <div class="offcanvas-body">
+    <a href="#!" class="off-link nav-active dd-section-trigger" data-section="general"><i class="material-icons">dashboard</i>General</a>
+    <a href="#!" class="off-link dd-section-trigger" data-section="usuarios"><i class="material-icons">people</i>Usuarios</a>
+    <a href="#!" class="off-link dd-section-trigger" data-section="empleos"><i class="material-icons">work</i>Empleos</a>
+    <a href="#!" class="off-link dd-section-trigger" data-section="servicios"><i class="material-icons">build</i>Servicios</a>
+    <div class="off-divider"></div>
+    <a href="#!" class="off-link" id="mobileLogout"><i class="material-icons">exit_to_app</i>Cerrar Sesión</a>
+  </div>
+</div>
+
+<main>
+  <div class="container">
+    <div class="welcome-banner">
+      <h4><i class="material-icons" style="font-size:28px;">admin_panel_settings</i>Panel de Administración</h4>
+      <p>Gestiona usuarios, empleos y servicios de LinkWork</p>
+    </div>
+
+    <div id="section-general" class="section-content">
+      <div class="row" id="statsRow">
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card stat-card blue-gradient"><div class="card-body text-center"><i class="material-icons large">people</i><h5 id="statUsers">0</h5><p>Usuarios</p></div></div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card stat-card green-gradient"><div class="card-body text-center"><i class="material-icons large">work</i><h5 id="statJobs">0</h5><p>Empleos</p></div></div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card stat-card orange-gradient"><div class="card-body text-center"><i class="material-icons large">build</i><h5 id="statServices">0</h5><p>Servicios</p></div></div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card stat-card purple-gradient"><div class="card-body text-center"><i class="material-icons large">assignment</i><h5 id="statPendientes">0</h5><p>Postulaciones</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="section-usuarios" class="section-content" style="display:none;">
+      <div class="card">
+        <div class="card-body">
+          <span class="card-title"><i class="material-icons">people</i>Usuarios del Sistema</span>
+          <div id="usersList"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="section-empleos" class="section-content" style="display:none;">
+      <div class="card">
+        <div class="card-body">
+          <span class="card-title"><i class="material-icons">work</i>Empleos Publicados</span>
+          <div id="adminJobsList"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="section-servicios" class="section-content" style="display:none;">
+      <div class="card">
+        <div class="card-body">
+          <span class="card-title"><i class="material-icons">build</i>Servicios Ofrecidos</span>
+          <div id="adminServicesList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../Login/js/api.js?v=20260811e"></script>
+<script src="js/nav.js?v=20260811d"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+  let user;
+  try { user = await LW.me(); } catch(_) { window.location.href = '../Login/index.html'; return; }
+  if (user.role !== 'admin') { window.location.href = '../Login/index.html'; return; }
+
+  document.getElementById('ddName').textContent = user.username;
+  document.getElementById('ddEmail').textContent = user.email;
+  document.getElementById('ddRole').textContent = user.role;
+  const initials = (user.username || 'U').substring(0, 2).toUpperCase();
+  document.getElementById('ddAvatar').textContent = initials;
+  document.getElementById('navUsername').textContent = user.username;
+
+  document.querySelectorAll('.dd-section-trigger').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const section = this.dataset.section;
+      document.querySelectorAll('.dd-section-trigger').forEach(a => a.classList.remove('nav-active'));
+      this.classList.add('nav-active');
+      document.querySelectorAll('.section-content').forEach(s => s.style.display = 'none');
+      document.getElementById('section-' + section).style.display = 'block';
+      closeMobileNav();
+    });
+  });
+
+  async function loadStats() {
+    try {
+      const s = await LW.dashboardStats();
+      document.getElementById('statUsers').textContent = s.usuarios || 0;
+      document.getElementById('statJobs').textContent = s.empleos || 0;
+      document.getElementById('statServices').textContent = s.servicios || 0;
+      document.getElementById('statPendientes').textContent = s.aplicaciones_pendientes || 0;
+    } catch(_) {}
+  }
+
+  async function load() {
+    try {
+      const [users, jobs, services] = await Promise.all([
+        LW.getUsuarios(), LW.getEmpleos(), LW.getServicios()
+      ]);
+
+      const uc = document.getElementById('usersList');
+      if (!users.length) {
+        uc.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">people</i><h5>Sin usuarios</h5><p>Aún no hay usuarios registrados</p></div>';
+      } else {
+        uc.innerHTML = users.map(u => `
+          <div class="user-row">
+            <div class="user-info">
+              <i class="material-icons user-avatar">${u.role === 'admin' ? 'admin_panel_settings' : 'person'}</i>
+              <div>
+                <strong>${u.username}</strong>
+                <span style="color:var(--text-muted);font-size:12px;">${u.email} · ${u.phone}</span>
+              </div>
+            </div>
+            <div class="user-meta">
+              <span class="role-badge ${u.role}">${u.role}</span>
+              ${u.role !== 'admin' ? '<a href="#!" class="delete-user-btn" data-email="${u.email}"><i class="material-icons" style="color:var(--accent2);">delete</i></a>' : ''}
+            </div>
+          </div>
+        `).join('');
+      }
+
+      const jc = document.getElementById('adminJobsList');
+      if (!jobs.length) {
+        jc.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">work</i><h5>Sin empleos</h5><p>Aún no hay empleos publicados</p></div>';
+      } else {
+        jc.innerHTML = jobs.map(j => `
+          <div class="user-row">
+            <div class="user-info">
+              <i class="material-icons user-avatar" style="color:var(--accent);">work</i>
+              <div>
+                <strong>${j.title}</strong>
+                <span style="color:var(--text-muted);font-size:12px;">${j.company} · por ${j.employer}</span>
+              </div>
+            </div>
+            <div class="user-meta">
+              <a href="#!" class="delete-job-btn" data-id="${j.id}"><i class="material-icons" style="color:var(--accent2);">delete</i></a>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      const sc = document.getElementById('adminServicesList');
+      if (!services.length) {
+        sc.innerHTML = '<div class="empty-state"><i class="material-icons empty-icon">build</i><h5>Sin servicios</h5><p>Aún no hay servicios ofrecidos</p></div>';
+      } else {
+        sc.innerHTML = services.map(s => `
+          <div class="user-row">
+            <div class="user-info">
+              <i class="material-icons user-avatar" style="color:var(--success);">build</i>
+              <div>
+                <strong>${s.title}</strong>
+                <span style="color:var(--text-muted);font-size:12px;">${s.category} · por ${s.provider}</span>
+              </div>
+            </div>
+            <div class="user-meta">
+              <a href="#!" class="delete-serv-btn" data-id="${s.id}"><i class="material-icons" style="color:var(--accent2);">delete</i></a>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      document.querySelectorAll('.delete-user-btn').forEach(btn => {
+        btn.addEventListener('click', async function(e) {
+          e.preventDefault();
+          const r = await Swal.fire({icon:'warning',iconColor:'#F59E0B',title:'¿Eliminar usuario?',text:'Esta acción no se puede deshacer',showCancelButton:true,confirmButtonColor:'#EF4444',cancelButtonColor:'#94A3B8',confirmButtonText:'Eliminar',cancelButtonText:'Cancelar',background:'#FFFFFF',color:'#1E293B',padding:'24px',reverseButtons:true});
+          if (!r.isConfirmed) return;
+          try { await LW.deleteUsuario(this.dataset.email); swalOk('Usuario eliminado'); load(); } catch(err) { swalErr(err); }
+        });
+      });
+      document.querySelectorAll('.delete-job-btn').forEach(btn => {
+        btn.addEventListener('click', async function(e) {
+          e.preventDefault();
+          try { await LW.deleteEmpleo(this.dataset.id); swalOk('Empleo eliminado'); load(); } catch(err) { swalErr(err); }
+        });
+      });
+      document.querySelectorAll('.delete-serv-btn').forEach(btn => {
+        btn.addEventListener('click', async function(e) {
+          e.preventDefault();
+          try { await LW.deleteServicio(this.dataset.id); swalOk('Servicio eliminado'); load(); } catch(err) { swalErr(err); }
+        });
+      });
+    } catch(err) { swalErr(err); }
+  }
+
+  loadStats();
+  load();
+});
+</script>
+</body>
+</html>
