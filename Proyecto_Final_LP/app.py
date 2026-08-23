@@ -1016,7 +1016,7 @@ def api_crear_solicitud():
             return jsonify({'error': 'Máximo 15 días de vacaciones al año'}), 400
         anio = datetime.date.today().year
         exist = query_one(
-            'SELECT id FROM solicitudes WHERE trabajador_email=%s AND solicitud_tipo="vacaciones" AND strftime("%Y", fecha_inicio)=%s',
+            'SELECT id FROM solicitudes WHERE trabajador_email=%s AND solicitud_tipo="vacaciones" AND YEAR(fecha_inicio)=%s',
             (user['email'], anio))
         if exist:
             return jsonify({'error': 'Ya solicitaste tus vacaciones este año'}), 400
@@ -1153,7 +1153,7 @@ def api_grupo_mensajes(id):
     last_id = mensajes[-1]['id'] if mensajes else 0
     execute(
         'INSERT INTO grupo_lectura (user_email, grupo_id, last_read_id) VALUES (%s,%s,%s) '
-        'ON CONFLICT(user_email, grupo_id) DO UPDATE SET last_read_id=%s',
+        'ON DUPLICATE KEY UPDATE last_read_id=%s',
         (user['email'], id, last_id, last_id))
     return jsonify({'grupo': g, 'mensajes': mensajes, 'miembros': _miembros_grupo(g)})
 
@@ -1268,8 +1268,8 @@ def api_get_finanzas():
     sql = 'SELECT *, fecha_registro AS fecha FROM finanzas WHERE user_email=%s'
     params = [user['email']]
     if year and month:
-        sql += ' AND strftime("%Y", fecha_registro)=%s AND strftime("%m", fecha_registro)=%s'
-        params += [str(int(year)), f"{int(month):02d}"]
+        sql += ' AND YEAR(fecha_registro)=%s AND MONTH(fecha_registro)=%s'
+        params += [int(year), int(month)]
     sql += ' ORDER BY fecha_registro DESC, created_at DESC'
     return jsonify(query(sql, tuple(params)))
 
@@ -1281,8 +1281,8 @@ def api_resumen_finanzas():
     month = request.args.get('month')
     if year and month:
         rows = query(
-            'SELECT tipo, SUM(monto) as total FROM finanzas WHERE user_email=%s AND strftime("%Y", fecha_registro)=%s AND strftime("%m", fecha_registro)=%s GROUP BY tipo',
-            (user['email'], str(int(year)), f"{int(month):02d}")
+            'SELECT tipo, SUM(monto) as total FROM finanzas WHERE user_email=%s AND YEAR(fecha_registro)=%s AND MONTH(fecha_registro)=%s GROUP BY tipo',
+            (user['email'], int(year), int(month))
         )
     else:
         rows = query(
@@ -1303,11 +1303,11 @@ def api_resumen_finanzas():
 def api_finanzas_mensual():
     user = get_user()
     rows = query(
-        "SELECT strftime('%Y', fecha_registro) as anio, strftime('%m', fecha_registro) as mes, "
+        "SELECT YEAR(fecha_registro) as anio, MONTH(fecha_registro) as mes, "
         "SUM(CASE WHEN tipo='ingreso' THEN monto ELSE 0 END) as ingresos, "
         "SUM(CASE WHEN tipo='egreso' THEN monto ELSE 0 END) as egresos "
         "FROM finanzas WHERE user_email=%s "
-        "GROUP BY strftime('%Y', fecha_registro), strftime('%m', fecha_registro) ORDER BY anio, mes",
+        "GROUP BY YEAR(fecha_registro), MONTH(fecha_registro) ORDER BY anio, mes",
         (user['email'],)
     )
     meses = []
