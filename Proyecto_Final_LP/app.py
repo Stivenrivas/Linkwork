@@ -17,13 +17,25 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 CORS(app, supports_credentials=True)
 ALLOWED_EXT = {'png', 'jpg', 'jpeg', 'gif', 'webp', 'pdf'}
 
-DB_CONFIG = {
-    'host': os.getenv('MYSQLHOST', 'localhost'),
-    'user': os.getenv('MYSQLUSER', 'root'),
-    'password': os.getenv('MYSQLPASSWORD', ''),
-    'database': os.getenv('MYSQLDATABASE', 'Linkwork'),
-    'port': int(os.getenv('MYSQLPORT', 3306))
-}
+import urllib.parse as _urlparse
+_mysql_url = os.getenv('MYSQL_URL') or os.getenv('DATABASE_URL') or os.getenv('MYSQL_PUBLIC_URL')
+if _mysql_url:
+    _u = _urlparse.urlparse(_mysql_url)
+    DB_CONFIG = {
+        'host': _u.hostname,
+        'user': _u.username,
+        'password': _u.password or '',
+        'database': _u.path.lstrip('/'),
+        'port': _u.port or 3306
+    }
+else:
+    DB_CONFIG = {
+        'host': os.getenv('MYSQLHOST', 'localhost'),
+        'user': os.getenv('MYSQLUSER', 'root'),
+        'password': os.getenv('MYSQLPASSWORD', ''),
+        'database': os.getenv('MYSQLDATABASE', 'Linkwork'),
+        'port': int(os.getenv('MYSQLPORT', 3306))
+    }
 
 def allowed_file(name):
     return '.' in name and name.rsplit('.', 1)[1].lower() in ALLOWED_EXT
