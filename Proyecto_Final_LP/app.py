@@ -104,10 +104,135 @@ def execute_lastid(sql, params=None):
     return n
 
 def init_db():
-    # En XAMPP la BD Linkwork ya existe, solo aseguramos el admin
+    # Crea las tablas si no existen (funciona tanto en XAMPP como en Railway)
     try:
         db = mysql.connector.connect(**DB_CONFIG)
         c = db.cursor()
+        # --- tablas base ---
+        c.execute('''CREATE TABLE IF NOT EXISTS usuarios (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL UNIQUE,
+            phone VARCHAR(255) NOT NULL,
+            password VARCHAR(255) NOT NULL,
+            role VARCHAR(50) NOT NULL,
+            frecuencia INT DEFAULT 0,
+            avatar VARCHAR(500),
+            cv_url VARCHAR(500),
+            ciudad VARCHAR(255),
+            profesion VARCHAR(255),
+            especialidad VARCHAR(255),
+            habilidades VARCHAR(500),
+            experiencia VARCHAR(255),
+            sobre_mi TEXT,
+            zona VARCHAR(255),
+            portafolio TEXT,
+            pregunta_seguridad VARCHAR(500),
+            respuesta_hash VARCHAR(255),
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4''')
+        c.execute('''CREATE TABLE IF NOT EXISTS empleos (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            title VARCHAR(255) NOT NULL,
+            company VARCHAR(255) NOT NULL,
+            location VARCHAR(255) NOT NULL,
+            salary VARCHAR(255),
+            description TEXT NOT NULL,
+            email VARCHAR(255) NOT NULL,
+            employer VARCHAR(255) NOT NULL,
+            imagen VARCHAR(500),
+            tipo VARCHAR(50) DEFAULT 'fijo',
+            horas INT DEFAULT 0,
+            cupos INT DEFAULT 1,
+            formalidad VARCHAR(20) DEFAULT 'formal',
+            hora_entrada TIME NULL,
+            hora_salida TIME NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4''')
+        c.execute('''CREATE TABLE IF NOT EXISTS servicios (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            title VARCHAR(255) NOT NULL,
+            category VARCHAR(255) NOT NULL,
+            price VARCHAR(255),
+            description TEXT NOT NULL,
+            providerEmail VARCHAR(255) NOT NULL,
+            provider VARCHAR(255) NOT NULL,
+            imagen VARCHAR(500),
+            horarios VARCHAR(500) NULL,
+            ubicacion VARCHAR(255) NULL,
+            duracion VARCHAR(100) NULL,
+            incluye VARCHAR(500) NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4''')
+        c.execute('''CREATE TABLE IF NOT EXISTS aplicaciones (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            tipo VARCHAR(50) NOT NULL,
+            ref_id INT NOT NULL,
+            solicitante_id INT NOT NULL,
+            solicitante_nombre VARCHAR(255) NOT NULL,
+            solicitante_email VARCHAR(255) NOT NULL,
+            propietario_email VARCHAR(255) NOT NULL,
+            mensaje TEXT,
+            estado VARCHAR(50) DEFAULT 'pendiente',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4''')
+        c.execute('''CREATE TABLE IF NOT EXISTS contratos (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            empleador_id INT NOT NULL,
+            empleador_email VARCHAR(255) NOT NULL,
+            trabajador_id INT NOT NULL,
+            trabajador_nombre VARCHAR(255) NOT NULL,
+            trabajador_email VARCHAR(255) NOT NULL,
+            tipo VARCHAR(50) NOT NULL,
+            ref_id INT NOT NULL,
+            ref_titulo VARCHAR(255) NOT NULL,
+            monto DECIMAL(12,2) DEFAULT 0,
+            horas INT DEFAULT 0,
+            estado VARCHAR(50) DEFAULT 'activo',
+            hora_entrada TIME NULL,
+            hora_salida TIME NULL,
+            dias_trabajados INT DEFAULT 0,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4''')
+        c.execute('''CREATE TABLE IF NOT EXISTS mensajes (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            remitente_id INT NOT NULL,
+            remitente_nombre VARCHAR(255) NOT NULL,
+            destinatario_id INT NOT NULL,
+            destinatario_nombre VARCHAR(255) NOT NULL,
+            tipo_ref VARCHAR(50) NOT NULL DEFAULT 'general',
+            ref_id INT NOT NULL,
+            mensaje TEXT NOT NULL,
+            leido INT DEFAULT 0,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4''')
+        c.execute('''CREATE TABLE IF NOT EXISTS solicitudes (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            contrato_id INT NOT NULL,
+            trabajador_id INT NOT NULL,
+            trabajador_email VARCHAR(255) NOT NULL,
+            trabajador_nombre VARCHAR(100) NOT NULL,
+            empleador_id INT NOT NULL,
+            empleador_email VARCHAR(255) NOT NULL,
+            solicitud_tipo VARCHAR(20) NOT NULL,
+            dias INT NOT NULL DEFAULT 1,
+            fecha_inicio DATE NULL,
+            descripcion TEXT,
+            imagen_url VARCHAR(500),
+            estado VARCHAR(20) DEFAULT 'pendiente',
+            mensaje_respuesta TEXT,
+            visto_por_trabajador TINYINT DEFAULT 0,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4''')
+        c.execute('''CREATE TABLE IF NOT EXISTS asistencia (
+            contrato_id INT NOT NULL,
+            trabajador_id INT NOT NULL,
+            trabajador_email VARCHAR(255) NOT NULL,
+            fecha DATE NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            PRIMARY KEY (contrato_id, fecha)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4''')
+        # admin
         c.execute("SELECT id FROM usuarios WHERE email=%s", ('admin@admin.com',))
         if not c.fetchone():
             admin_pw = hashlib.sha256(b'admin123').hexdigest()
@@ -117,7 +242,7 @@ def init_db():
         c.close()
         db.close()
     except Exception as e:
-        print(f"init_db (MySQL XAMPP) aviso: {e}")
+        print(f"init_db aviso: {e}")
 
 init_db()
 
